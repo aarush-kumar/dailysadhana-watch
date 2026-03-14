@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import Image from 'next/image';
 import { auth } from '../../lib/firebase';
 import { RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
 import Navbar from '../../components/Navbar';
@@ -94,11 +95,14 @@ export default function Login() {
             <div className="container" style={{ maxWidth: '400px', padding: '80px 20px' }}>
                 <div className="card text-center fade-in">
                     <div style={{ marginBottom: '32px' }}>
-                        {/* Placeholder for gold sun logo */}
-                        <div style={{ fontSize: '48px', color: 'var(--color-gold)', marginBottom: '8px' }}>☀️</div>
-                        <div className="serif" style={{ fontSize: '20px', letterSpacing: '0.2em', color: 'var(--color-maroon)' }}>
-                            DAILY SĀDHANĀ
-                        </div>
+                        <Image
+                            src="/logo-dark.png"
+                            alt="Daily Sādhanā"
+                            width={180}
+                            height={120}
+                            style={{ maxWidth: '100%', height: 'auto', margin: '0 auto' }}
+                            priority
+                        />
                     </div>
 
                     <div style={{ width: '40px', height: '1px', backgroundColor: 'var(--color-gold)', margin: '0 auto 32px' }}></div>

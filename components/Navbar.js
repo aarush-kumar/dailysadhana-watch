@@ -1,9 +1,10 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Navbar() {
     return (
         <nav style={{
-            padding: '20px 0',
+            padding: '16px 0',
             borderBottom: '1px solid rgba(107, 36, 33, 0.1)',
             backgroundColor: 'var(--color-cream)'
         }}>
@@ -12,20 +13,15 @@ export default function Navbar() {
                 justifyContent: 'center',
                 alignItems: 'center'
             }}>
-                <Link href="/" style={{ textAlign: 'center' }}>
-                    <div style={{
-                        fontSize: '12px',
-                        color: 'var(--color-gold)',
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.2em',
-                        marginBottom: '4px'
-                    }}>Daily</div>
-                    <div className="serif" style={{
-                        fontSize: '24px',
-                        color: 'var(--color-maroon)',
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.1em'
-                    }}>Sādhanā</div>
+                <Link href="/" style={{ textAlign: 'center', display: 'flex', justifyContent: 'center' }}>
+                    <Image
+                        src="/logo-gold.png"
+                        alt="Daily Sādhanā"
+                        width={240}
+                        height={80}
+                        style={{ maxWidth: '100%', height: 'auto' }}
+                        priority
+                    />
                 </Link>
             </div>
         </nav>

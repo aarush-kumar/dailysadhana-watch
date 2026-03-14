@@ -3,6 +3,9 @@ import '../styles/globals.css';
 export const metadata = {
     title: 'Daily Sādhanā — Watch Your Daily Shloka',
     description: 'Watch your daily shloka video in English, Hindi, Tamil, Telugu, or Kannada. A companion to your 90-day Daily Sadhana journal.',
+    icons: {
+        icon: '/favicon.png',
+    },
 };
 
 export const viewport = {
