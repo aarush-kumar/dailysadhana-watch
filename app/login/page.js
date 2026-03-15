@@ -1,13 +1,13 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import { auth } from '../../lib/firebase';
 import { RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
 import Navbar from '../../components/Navbar';
 
-export default function Login() {
+function LoginContent() {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [otp, setOtp] = useState('');
     const [step, setStep] = useState('phone'); // 'phone' or 'otp'
@@ -90,113 +90,121 @@ export default function Login() {
     };
 
     return (
+        <div className="container" style={{ maxWidth: '400px', padding: '80px 20px' }}>
+            <div className="card text-center fade-in">
+                <div style={{ marginBottom: '32px' }}>
+                    <Image
+                        src="/logo-dark.png"
+                        alt="Daily Sādhanā"
+                        width={180}
+                        height={120}
+                        style={{ maxWidth: '100%', height: 'auto', margin: '0 auto' }}
+                        priority
+                    />
+                </div>
+
+                <div style={{ width: '40px', height: '1px', backgroundColor: 'var(--color-gold)', margin: '0 auto 32px' }}></div>
+
+                {step === 'phone' ? (
+                    <form onSubmit={handleSendOtp}>
+                        <h2 className="mb-4">Welcome Back</h2>
+                        <p className="mb-4" style={{ fontSize: '14px', color: 'var(--color-muted)' }}>
+                            Enter your phone number to verify your journal purchase.
+                        </p>
+
+                        <div style={{ marginBottom: '20px', textAlign: 'left' }}>
+                            <label style={{ fontSize: '12px', fontWeight: '600', textTransform: 'uppercase', color: 'var(--color-muted)', display: 'block', marginBottom: '8px' }}>
+                                Phone Number
+                            </label>
+                            <input
+                                type="tel"
+                                placeholder="98765 43210"
+                                value={phoneNumber}
+                                onChange={(e) => setPhoneNumber(e.target.value)}
+                                style={{
+                                    width: '100%',
+                                    padding: '12px 16px',
+                                    borderRadius: 'var(--radius-input)',
+                                    border: '1px solid rgba(17, 17, 17, 0.1)',
+                                    fontSize: '16px',
+                                    backgroundColor: 'var(--color-cream)'
+                                }}
+                                required
+                            />
+                        </div>
+
+                        {error && <p style={{ color: 'red', fontSize: '14px', marginBottom: '16px' }}>{error}</p>}
+
+                        <button
+                            type="submit"
+                            className="btn-primary"
+                            style={{ width: '100%' }}
+                            disabled={loading}
+                        >
+                            {loading ? 'Sending...' : 'Send OTP'}
+                        </button>
+                    </form>
+                ) : (
+                    <form onSubmit={handleVerifyOtp}>
+                        <h2 className="mb-4">Enter OTP</h2>
+                        <p className="mb-4" style={{ fontSize: '14px', color: 'var(--color-muted)' }}>
+                            We've sent a 6-digit code to your phone.
+                        </p>
+
+                        <div style={{ marginBottom: '20px' }}>
+                            <input
+                                type="text"
+                                placeholder="000000"
+                                value={otp}
+                                onChange={(e) => setOtp(e.target.value)}
+                                maxLength={6}
+                                style={{
+                                    width: '100%',
+                                    padding: '12px 16px',
+                                    borderRadius: 'var(--radius-input)',
+                                    border: '1px solid rgba(17, 17, 17, 0.1)',
+                                    fontSize: '24px',
+                                    letterSpacing: '0.5em',
+                                    textAlign: 'center',
+                                    backgroundColor: 'var(--color-cream)'
+                                }}
+                                required
+                            />
+                        </div>
+
+                        {error && <p style={{ color: 'red', fontSize: '14px', marginBottom: '16px' }}>{error}</p>}
+
+                        <button
+                            type="submit"
+                            className="btn-primary"
+                            style={{ width: '100%' }}
+                            disabled={loading}
+                        >
+                            {loading ? 'Verifying...' : 'Verify OTP'}
+                        </button>
+
+                        <button
+                            type="button"
+                            onClick={() => setStep('phone')}
+                            style={{ marginTop: '16px', fontSize: '14px', color: 'var(--color-maroon)' }}
+                        >
+                            Change Phone Number
+                        </button>
+                    </form>
+                )}
+            </div>
+            <div id="recaptcha-container"></div>
+        </div>
+    );
+}
+
+export default function Login() {
+    return (
         <div>
             <Navbar />
-            <div className="container" style={{ maxWidth: '400px', padding: '80px 20px' }}>
-                <div className="card text-center fade-in">
-                    <div style={{ marginBottom: '32px' }}>
-                        <Image
-                            src="/logo-dark.png"
-                            alt="Daily Sādhanā"
-                            width={180}
-                            height={120}
-                            style={{ maxWidth: '100%', height: 'auto', margin: '0 auto' }}
-                            priority
-                        />
-                    </div>
-
-                    <div style={{ width: '40px', height: '1px', backgroundColor: 'var(--color-gold)', margin: '0 auto 32px' }}></div>
-
-                    {step === 'phone' ? (
-                        <form onSubmit={handleSendOtp}>
-                            <h2 className="mb-4">Welcome Back</h2>
-                            <p className="mb-4" style={{ fontSize: '14px', color: 'var(--color-muted)' }}>
-                                Enter your phone number to verify your journal purchase.
-                            </p>
-
-                            <div style={{ marginBottom: '20px', textAlign: 'left' }}>
-                                <label style={{ fontSize: '12px', fontWeight: '600', textTransform: 'uppercase', color: 'var(--color-muted)', display: 'block', marginBottom: '8px' }}>
-                                    Phone Number
-                                </label>
-                                <input
-                                    type="tel"
-                                    placeholder="98765 43210"
-                                    value={phoneNumber}
-                                    onChange={(e) => setPhoneNumber(e.target.value)}
-                                    style={{
-                                        width: '100%',
-                                        padding: '12px 16px',
-                                        borderRadius: 'var(--radius-input)',
-                                        border: '1px solid rgba(17, 17, 17, 0.1)',
-                                        fontSize: '16px',
-                                        backgroundColor: 'var(--color-cream)'
-                                    }}
-                                    required
-                                />
-                            </div>
-
-                            {error && <p style={{ color: 'red', fontSize: '14px', marginBottom: '16px' }}>{error}</p>}
-
-                            <button
-                                type="submit"
-                                className="btn-primary"
-                                style={{ width: '100%' }}
-                                disabled={loading}
-                            >
-                                {loading ? 'Sending...' : 'Send OTP'}
-                            </button>
-                        </form>
-                    ) : (
-                        <form onSubmit={handleVerifyOtp}>
-                            <h2 className="mb-4">Enter OTP</h2>
-                            <p className="mb-4" style={{ fontSize: '14px', color: 'var(--color-muted)' }}>
-                                We've sent a 6-digit code to your phone.
-                            </p>
-
-                            <div style={{ marginBottom: '20px' }}>
-                                <input
-                                    type="text"
-                                    placeholder="000000"
-                                    value={otp}
-                                    onChange={(e) => setOtp(e.target.value)}
-                                    maxLength={6}
-                                    style={{
-                                        width: '100%',
-                                        padding: '12px 16px',
-                                        borderRadius: 'var(--radius-input)',
-                                        border: '1px solid rgba(17, 17, 17, 0.1)',
-                                        fontSize: '24px',
-                                        letterSpacing: '0.5em',
-                                        textAlign: 'center',
-                                        backgroundColor: 'var(--color-cream)'
-                                    }}
-                                    required
-                                />
-                            </div>
-
-                            {error && <p style={{ color: 'red', fontSize: '14px', marginBottom: '16px' }}>{error}</p>}
-
-                            <button
-                                type="submit"
-                                className="btn-primary"
-                                style={{ width: '100%' }}
-                                disabled={loading}
-                            >
-                                {loading ? 'Verifying...' : 'Verify OTP'}
-                            </button>
-
-                            <button
-                                type="button"
-                                onClick={() => setStep('phone')}
-                                style={{ marginTop: '16px', fontSize: '14px', color: 'var(--color-maroon)' }}
-                            >
-                                Change Phone Number
-                            </button>
-                        </form>
-                    )}
-                </div>
-                <div id="recaptcha-container"></div>
-            </div>
+            <Suspense fallback={<div className="container text-center" style={{ padding: '80px 20px' }}>Loading...</div>}>
+                <LoginContent />
+            </Suspense>
         </div>
     );
 }
