@@ -8,7 +8,6 @@ import LanguageSelector from '../../../components/LanguageSelector';
 import ShlokaText from '../../../components/ShlokaText';
 import DayNavigation from '../../../components/DayNavigation';
 import shlokasData from '../../../data/shlokas.json';
-import { Lock } from 'lucide-react';
 
 import LockedOverlay from '../../../components/LockedOverlay';
 

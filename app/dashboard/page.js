@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Navbar from '../../components/Navbar';
 import ProgressGrid from '../../components/ProgressGrid';
-import { Flame, Clock, Trophy } from 'lucide-react';
+import { Flame, Clock } from 'lucide-react';
 
 export default function Dashboard() {
     const [progress, setProgress] = useState({ completedDays: [], streak: 0, totalMinutes: 0 });
