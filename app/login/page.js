@@ -79,11 +79,24 @@ function LoginContent() {
                 const redirect = searchParams.get('redirect') || '/dashboard';
                 router.push(redirect);
             } else {
-                setError('Failed to create session. Please try again.');
+                // Show the actual server error for better debugging
+                let errorMsg = 'Failed to create session. Please try again.';
+                try {
+                    const errData = await response.json();
+                    errorMsg = errData.error || errData.detail || errorMsg;
+                } catch (_) { }
+                console.error('Session API error:', response.status, errorMsg);
+                setError(errorMsg);
             }
         } catch (err) {
-            console.error(err);
-            setError('Invalid OTP. Please try again.');
+            console.error('OTP verification error:', err);
+            if (err.code === 'auth/invalid-verification-code') {
+                setError('Invalid OTP. Please check and try again.');
+            } else if (err.code === 'auth/code-expired') {
+                setError('OTP has expired. Please request a new one.');
+            } else {
+                setError('Verification failed. Please try again.');
+            }
         } finally {
             setLoading(false);
         }

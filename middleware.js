@@ -1,11 +1,10 @@
 import { NextResponse } from 'next/server';
-import { parse } from 'cookie';
-import jwt from 'jsonwebtoken';
+import { jwtVerify } from 'jose';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'fallback-secret-for-dev-only';
 const COOKIE_NAME = 'sadhana_session';
 
-export function middleware(req) {
+export async function middleware(req) {
     const { pathname } = req.nextUrl;
 
     // 1. Define protected & public paths
@@ -15,17 +14,18 @@ export function middleware(req) {
 
     const isAuthRoute = pathname.startsWith('/login');
 
-    // 2. Get cookie
-    const cookies = parse(req.headers.get('cookie') || '');
-    const token = cookies[COOKIE_NAME];
+    // 2. Get cookie using Next.js built-in cookies API (Edge-compatible)
+    const token = req.cookies.get(COOKIE_NAME)?.value;
 
-    // 3. Verify session
+    // 3. Verify session using jose (Edge-compatible JWT library)
     let user = null;
     if (token) {
         try {
-            user = jwt.verify(token, JWT_SECRET);
+            const secret = new TextEncoder().encode(JWT_SECRET);
+            const { payload } = await jwtVerify(token, secret);
+            user = payload;
         } catch (e) {
-            // Token invalid
+            // Token invalid or expired
         }
     }
 

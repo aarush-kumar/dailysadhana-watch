@@ -6,13 +6,27 @@ export async function POST(req) {
     try {
         const { idToken } = await req.json();
 
-        // 1. Verify Firebase ID token
-        if (!auth) {
-            console.error('Firebase Admin Auth not initialized');
-            return NextResponse.json({ error: 'Auth service unavailable' }, { status: 500 });
+        if (!idToken) {
+            return NextResponse.json({ error: 'Missing idToken' }, { status: 400 });
         }
 
-        const decodedToken = await auth.verifyIdToken(idToken);
+        // 1. Verify Firebase ID token
+        if (!auth) {
+            console.error('Firebase Admin Auth not initialized. Check FIREBASE_PROJECT_ID, FIREBASE_CLIENT_EMAIL, and FIREBASE_PRIVATE_KEY env vars.');
+            return NextResponse.json({ error: 'Auth service unavailable. Check server configuration.' }, { status: 500 });
+        }
+
+        let decodedToken;
+        try {
+            decodedToken = await auth.verifyIdToken(idToken);
+        } catch (verifyError) {
+            console.error('Token verification failed:', verifyError.code, verifyError.message);
+            return NextResponse.json({
+                error: 'Token verification failed',
+                detail: verifyError.code || verifyError.message
+            }, { status: 401 });
+        }
+
         const { uid, phone_number: phone } = decodedToken;
 
         if (!phone) {
@@ -23,7 +37,7 @@ export async function POST(req) {
         // 2. Look up phone in verified_orders
         const normalizedPhone = phone.replace(/\s+/g, '');
         let isVerified = false;
-        
+
         try {
             if (db) {
                 const orderDoc = await db.collection('verified_orders').doc(normalizedPhone).get();
@@ -62,10 +76,10 @@ export async function POST(req) {
         });
 
     } catch (error) {
-        console.error('Session creation error:', error);
-        return NextResponse.json({ 
-            error: 'Internal server error', 
-            message: error.message 
+        console.error('Session creation error:', error.message, error.stack);
+        return NextResponse.json({
+            error: 'Session creation failed',
+            detail: error.message
         }, { status: 500 });
     }
 }
