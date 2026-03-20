@@ -50,7 +50,8 @@ export default function VideoPlayer({ videoUrl, onProgress }) {
                 backgroundColor: '#000',
                 borderRadius: 'var(--radius-card)',
                 overflow: 'hidden',
-                aspectRatio: '16/9',
+                aspectRatio: '9/16',
+                maxHeight: '80vh',
                 boxShadow: '0 4px 20px rgba(0,0,0,0.2)'
             }}
         >
