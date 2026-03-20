@@ -64,32 +64,14 @@ function LoginContent() {
         setLoading(true);
         setError('');
 
+        // Step 1: Verify OTP with Firebase
+        let idToken;
         try {
             const result = await confirmationResult.confirm(otp);
-            const idToken = await result.user.getIdToken();
-
-            // Call session API to set cookie
-            const response = await fetch('/api/auth/session', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ idToken })
-            });
-
-            if (response.ok) {
-                const redirect = searchParams.get('redirect') || '/dashboard';
-                router.push(redirect);
-            } else {
-                // Show the actual server error for better debugging
-                let errorMsg = 'Failed to create session. Please try again.';
-                try {
-                    const errData = await response.json();
-                    errorMsg = errData.error || errData.detail || errorMsg;
-                } catch (_) { }
-                console.error('Session API error:', response.status, errorMsg);
-                setError(errorMsg);
-            }
+            idToken = await result.user.getIdToken();
         } catch (err) {
             console.error('OTP verification error:', err);
+            setLoading(false);
             if (err.code === 'auth/invalid-verification-code') {
                 setError('Invalid OTP. Please check and try again.');
             } else if (err.code === 'auth/code-expired') {
@@ -97,9 +79,39 @@ function LoginContent() {
             } else {
                 setError('Verification failed. Please try again.');
             }
-        } finally {
-            setLoading(false);
+            return;
         }
+
+        // Step 2: Create session cookie
+        try {
+            const response = await fetch('/api/auth/session', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ idToken })
+            });
+
+            if (!response.ok) {
+                let errorMsg = 'Failed to create session. Please try again.';
+                try {
+                    const errData = await response.json();
+                    errorMsg = errData.error || errData.detail || errorMsg;
+                } catch (_) { }
+                console.error('Session API error:', response.status, errorMsg);
+                setError(errorMsg);
+                setLoading(false);
+                return;
+            }
+        } catch (err) {
+            console.error('Session API fetch error:', err);
+            setError('Network error. Please try again.');
+            setLoading(false);
+            return;
+        }
+
+        // Step 3: Navigate after cookie is set
+        // Use router.replace + small delay to ensure the cookie is committed
+        const redirect = searchParams.get('redirect') || '/dashboard';
+        router.replace(redirect);
     };
 
     return (
