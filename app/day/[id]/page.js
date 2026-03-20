@@ -111,7 +111,7 @@ export default function DayPage({ params: paramsPromise }) {
                         {error ? (
                             <div className="card text-center maroon" style={{ padding: '40px' }}>{error}</div>
                         ) : loading ? (
-                            <div style={{ width: '100%', aspectRatio: '16/9', backgroundColor: '#e0e0e0', borderRadius: 'var(--radius-card)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                            <div style={{ width: '100%', aspectRatio: '9/16', maxHeight: '60vh', margin: '0 auto', backgroundColor: '#e0e0e0', borderRadius: 'var(--radius-card)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                 <div className="maroon">Preparing Shloka Video...</div>
                             </div>
                         ) : (

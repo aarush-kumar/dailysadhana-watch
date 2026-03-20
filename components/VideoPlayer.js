@@ -51,7 +51,8 @@ export default function VideoPlayer({ videoUrl, onProgress }) {
                 borderRadius: 'var(--radius-card)',
                 overflow: 'hidden',
                 aspectRatio: '9/16',
-                maxHeight: '80vh',
+                maxHeight: '60vh',
+                margin: '0 auto',
                 boxShadow: '0 4px 20px rgba(0,0,0,0.2)'
             }}
         >
@@ -62,7 +63,7 @@ export default function VideoPlayer({ videoUrl, onProgress }) {
                 onLoadedMetadata={() => setDuration(videoRef.current.duration)}
                 onClick={togglePlay}
                 controlsList="nodownload nofullscreen noremoteplayback"
-                style={{ width: '100%', height: '100%', display: 'block' }}
+                style={{ width: '100%', height: '100%', display: 'block', objectFit: 'cover' }}
             />
 
             {/* Custom Controls Overlay */}
