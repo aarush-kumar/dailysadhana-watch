@@ -109,9 +109,9 @@ function LoginContent() {
         }
 
         // Step 3: Navigate after cookie is set
-        // Use router.replace + small delay to ensure the cookie is committed
+        // Full page reload ensures the cookie is sent with the request
         const redirect = searchParams.get('redirect') || '/dashboard';
-        router.replace(redirect);
+        window.location.href = redirect;
     };
 
     return (
