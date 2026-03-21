@@ -1,26 +1,39 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&family=Noto+Sans+Devanagari:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&family=Noto+Sans+Devanagari:wght@500&family=Noto+Serif:ital,wght@0,400;0,700;1,400&display=swap');
 
 :root {
-  /* Brand Colors */
-  --color-maroon: #6B2421;
-  --color-cream: #FBF3E4;
-  --color-gold: #D4AF37;
-  --color-dark: #1A1A1A;
-  --color-light: #FFFFFF;
-  --color-muted: #8B7D6B;
-  --color-shadow: rgba(0, 0, 0, 0.08);
+  /* Brand Colors - "The Modern Temple" */
+  --color-maroon: #5d1f1f;
+  --color-cream: #fff8ef;
+  --color-gold: #735c00;
+  --color-gold-light: #fed65b;
+  --color-gold-accent: #e9c349;
+  --color-dark: #1e1b13;
+  --color-light: #ffffff;
+  --color-muted: #544342;
+  --color-muted-light: #867271;
+  --color-shadow: rgba(30, 27, 19, 0.08);
+
+  /* Surface Hierarchy */
+  --surface: #fff8ef;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #fbf3e4;
+  --surface-container: #f5edde;
+  --surface-container-high: #efe7d9;
+  --surface-dim: #e1d9cb;
+  --outline-variant: #d9c1bf;
 
   /* Typography */
-  --font-heading: 'Playfair Display', serif;
-  --font-body: 'Inter', sans-serif;
+  --font-heading: 'Playfair Display', 'Noto Serif', serif;
+  --font-body: 'Plus Jakarta Sans', 'Poppins', sans-serif;
+  --font-label: 'Plus Jakarta Sans', sans-serif;
   --font-sanskrit: 'Noto Sans Devanagari', sans-serif;
 
   /* Layout */
   --max-width: 800px;
   --spacing-base: 24px;
-  --radius-pill: 50px;
-  --radius-card: 16px;
-  --radius-input: 12px;
+  --radius-pill: 9999px;
+  --radius-card: 1.5rem;
+  --radius-input: 0.75rem;
 }
 
 * {
@@ -33,7 +46,7 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-  background-color: var(--color-cream);
+  background-color: var(--surface);
   color: var(--color-dark);
   font-family: var(--font-body);
   line-height: 1.6;
@@ -60,27 +73,49 @@ button {
 .btn-primary {
   background-color: var(--color-maroon);
   color: var(--color-light);
-  padding: 12px 24px;
+  padding: 14px 28px;
   border-radius: var(--radius-pill);
-  font-weight: 600;
+  font-weight: 700;
+  font-family: var(--font-label);
+  font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  transition: all 0.3s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
 }
 
 .btn-primary:hover {
-  transform: scale(1.02);
-  background-color: #551d1a;
+  opacity: 0.95;
+  box-shadow: 0 8px 32px rgba(30, 27, 19, 0.12);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-secondary {
+  background-color: var(--color-gold-light);
+  color: var(--color-gold);
+  padding: 14px 28px;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  font-family: var(--font-label);
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  box-shadow: 0 8px 32px rgba(30, 27, 19, 0.12);
 }
 
 .card {
-  background-color: var(--color-light);
+  background-color: var(--surface-container-lowest);
   border-radius: var(--radius-card);
   padding: var(--spacing-base);
-  box-shadow: 0 2px 12px var(--color-shadow);
+  box-shadow: 0 12px 48px var(--color-shadow);
 }
 
 .container {
@@ -99,6 +134,15 @@ button {
 .mb-4 { margin-bottom: 16px; }
 .gold { color: var(--color-gold); }
 .maroon { color: var(--color-maroon); }
+
+/* Label style */
+.label {
+  font-family: var(--font-label);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-muted);
+}
 
 /* Animations */
 @keyframes fadeIn {
