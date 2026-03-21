@@ -1,16 +1,542 @@
 [
   {
     "day": 1,
-    "sanskrit": "ॐ नमो भगवते वासुदेवाय ॥",
-    "transliteration": "Om Namo Bhagavate Vāsudevāya",
-    "meaning": "I bow to the Lord who lives in the hearts of all and is the source of all consciousness.",
-    "video": "day-01"
+    "sanskrit": "योगस्थः कुरु कर्माणि सङ्गं त्यक्त्वा धनञ्जय",
+    "transliteration": "Yogasthaḥ kuru karmāṇi saṅgaṁ tyaktvā dhanañjaya — Gītā 2.48",
+    "meaning": "Be steadfast in yoga; remain equal in success and failure — this evenness is yoga."
   },
   {
     "day": 2,
-    "sanskrit": "ॐ पूर्णमदः पूर्णमिदं पूर्णात् पूर्णमुदच्यते ।",
-    "transliteration": "Om Pūrṇamadaḥ Pūrṇamidam Pūrṇāt Pūrṇamudacyate",
-    "meaning": "That is whole, this is whole; from the whole, the whole becomes manifest.",
-    "video": "day-02"
+    "sanskrit": "कर्मण्येवाधिकारस्ते मा फलेषु कदाचन",
+    "transliteration": "Karmaṇy eva adhikāras te mā phaleṣu kadācana — Gītā 2.47",
+    "meaning": "You have a right to action alone, never to its fruits."
+  },
+  {
+    "day": 3,
+    "sanskrit": "सुखदुःखे समे कृत्वा लाभालाभौ जयाजयौ",
+    "transliteration": "Sukha-duḥkhe same kṛtvā lābhā-lābhau jayā-jayau — Gītā 2.38",
+    "meaning": "Treat pleasure and pain, gain and loss alike, then act."
+  },
+  {
+    "day": 4,
+    "sanskrit": "उद्धरेदात्मनात्मानं नात्मानमवसादयेत्",
+    "transliteration": "Uddhared ātmanātmānaṁ nātmanam avasādayet — Gītā 6.5",
+    "meaning": "Lift yourself by your own mind; never let yourself sink."
+  },
+  {
+    "day": 5,
+    "sanskrit": "आत्मानं रथिनं विद्धि शरीरं रथमेव तु",
+    "transliteration": "Ātmānaṁ rathinaṁ viddhi śarīraṁ rathameva tu — Katha Up. 1.3.3",
+    "meaning": "Know the Self as the rider, the body as the chariot, the mind as the reins."
+  },
+  {
+    "day": 6,
+    "sanskrit": "ध्यायतो विषयान्पुंसः सङ्गस्तेषूपजायते",
+    "transliteration": "Dhyāyato viṣayān puṁsaḥ saṅgas teṣūpajāyate — Gītā 2.62",
+    "meaning": "Attachment arises from dwelling on sense objects."
+  },
+  {
+    "day": 7,
+    "sanskrit": "श्रेयान्स्वधर्मः विगुणः परधर्मात्स्वनुष्ठितात्",
+    "transliteration": "Śreyān sva-dharmaḥ viguṇaḥ paradharmāt svanuṣṭhitāt — Gītā 3.35",
+    "meaning": "Better one's own path, though imperfect, than another's perfectly done."
+  },
+  {
+    "day": 8,
+    "sanskrit": "यदा विनियतं चित्तमात्मन्येवावतिष्ठते",
+    "transliteration": "Yadā viniyataṁ cittam ātmany evāvatiṣṭhate — Gītā 6.18",
+    "meaning": "When the mind is steady and rests in the Self, one finds peace."
+  },
+  {
+    "day": 9,
+    "sanskrit": "आत्मैव ह्यात्मनो बन्धुरात्मैव रिपुरात्मनः",
+    "transliteration": "Ātmaiva hy ātmano bandhur ātmaiva ripur ātmanaḥ — Gītā 6.5",
+    "meaning": "The Self is one's friend and one's enemy."
+  },
+  {
+    "day": 10,
+    "sanskrit": "सर्वं खल्विदं ब्रह्म",
+    "transliteration": "Sarvaṁ khalv idaṁ brahma — Chāndogya Up. 3.14.1",
+    "meaning": "All this is truly the Divine."
+  },
+  {
+    "day": 11,
+    "sanskrit": "तस्मादसक्तः सततं कार्यं कर्म समाचर। असक्तो ह्याचरन्कर्म परमाप्नोति पुरुषः",
+    "transliteration": "Tasmād asaktah satatam kāryam karma samācara, asakto hy ācaran karma param āpnoti purusah — Bhagavad Gītā 3.19",
+    "meaning": "Therefore, perform your duty always without attachment; such selfless action leads to perfection."
+  },
+  {
+    "day": 12,
+    "sanskrit": "यज्ञार्थात्कर्मणोऽन्यत्र लोकोऽयं कर्मबन्धनः",
+    "transliteration": "Yajñārthāt karmaṇo'nyatra loko'yaṁ karma-bandhanaḥ — Gītā 3.9",
+    "meaning": "Action done as worship frees; selfish action binds."
+  },
+  {
+    "day": 13,
+    "sanskrit": "नियतं कुरु कर्म त्वं कर्म ज्यायो ह्यकर्मणः",
+    "transliteration": "Niyataṁ kuru karma tvaṁ karma jyāyo hy akarmaṇaḥ — Gītā 3.8",
+    "meaning": "Perform your duty; action is better than inaction."
+  },
+  {
+    "day": 14,
+    "sanskrit": "स्वधर्मे निधनं श्रेयः परधर्मो भयावहः",
+    "transliteration": "Svadharme nidhanam śreyaḥ paradharmo bhayāvahaḥ — Gītā 3.35",
+    "meaning": "Dying in one's own dharma is better than living another's."
+  },
+  {
+    "day": 15,
+    "sanskrit": "लोकोऽयं कर्मसङ्गिनः",
+    "transliteration": "Loko'yaṁ karma-saṅginah — Gītā 3.9",
+    "meaning": "The world is bound by attachment to work."
+  },
+  {
+    "day": 16,
+    "sanskrit": "न कर्मणामनारम्भान्नैष्कर्म्यं पुरुषोऽश्नुते",
+    "transliteration": "Na karmaṇām anārambhān naiṣkarmyaṁ puruṣo'śnute — Gītā 3.4",
+    "meaning": "One does not reach freedom by avoiding action."
+  },
+  {
+    "day": 17,
+    "sanskrit": "कर्तारमपि मां विद्धि अकर्तारमव्ययम्",
+    "transliteration": "Kartāram api māṁ viddhi akartāram avyayam — Gītā 4.13",
+    "meaning": "Though I act, I remain unchanged."
+  },
+  {
+    "day": 18,
+    "sanskrit": "यत्करोषि यदश्नासि तत्कुरुष्व मदर्पणम्",
+    "transliteration": "Yat karoṣi yad aśnāsi tat kuruṣva mad-arpaṇam — Gītā 9.27",
+    "meaning": "Whatever you do, offer it to Me with devotion."
+  },
+  {
+    "day": 19,
+    "sanskrit": "कर्मजं बुद्धियुक्ता हि फलं त्यक्त्वा मनीषिणः",
+    "transliteration": "Karmajaṁ buddhi-yuktā hi phalaṁ tyaktvā manīṣiṇaḥ — Gītā 2.51",
+    "meaning": "The wise renounce attachment to fruits and find peace."
+  },
+  {
+    "day": 20,
+    "sanskrit": "सक्ताः कर्मण्यविद्वांसो यथा कुर्वन्ति भारत। कुर्याद्विद्वांस्तथासक्तश्चिकीर्षुर्लोकसङ्ग्रहम्",
+    "transliteration": "Saktāḥ karmaṇy avidvāṁso yathā kurvanti bhārata, kuryād vidvāṁs tathāsaktaś cikīrṣur loka-saṅgraham — Gītā 3.25",
+    "meaning": "The wise act without attachment for the welfare of the world."
+  },
+  {
+    "day": 21,
+    "sanskrit": "समदुःखसुखं धीरं सोऽमृतत्वाय कल्पते",
+    "transliteration": "Sama-duḥkha-sukhaṁ dhīraṁ so'mṛtatvāya kalpate — Gītā 2.15",
+    "meaning": "One steady in pain and pleasure alike attains immortality."
+  },
+  {
+    "day": 22,
+    "sanskrit": "यदा संहरते चायं कूर्मोऽङ्गानीव सर्वशः",
+    "transliteration": "Yadā saṁharate cāyaṁ kūrmo'ṅgānīva sarvaśaḥ — Gītā 2.58",
+    "meaning": "The steady withdraw their senses like a tortoise its limbs."
+  },
+  {
+    "day": 23,
+    "sanskrit": "यदा आप्नोति मनः शान्तिं आत्मनि एव अवतिष्ठते",
+    "transliteration": "Yadā āpnoti manaḥ śāntiṁ ātmani eva avatiṣṭhate — Gītā 6.18",
+    "meaning": "When the mind rests in the Self, joy arises."
+  },
+  {
+    "day": 24,
+    "sanskrit": "उद्धरेदात्मनात्मानम्",
+    "transliteration": "Uddhared ātmanātmānam — Gītā 6.5",
+    "meaning": "Uplift yourself by your own awareness."
+  },
+  {
+    "day": 25,
+    "sanskrit": "दुःखेष्वनुद्विग्नमनाः सुखेषु विगतस्पृहः",
+    "transliteration": "Duḥkheṣv anudvigna-manāḥ sukheṣu vigata-spṛhaḥ — Gītā 2.56",
+    "meaning": "Unshaken in sorrow, desireless in joy, is the wise."
+  },
+  {
+    "day": 26,
+    "sanskrit": "शान्तो दान्तः परार्थेभ्यः",
+    "transliteration": "Śānto dāntaḥ parārthebhyaḥ — Manusmṛti 6.92",
+    "meaning": "The peaceful and disciplined one lives for the good of others."
+  },
+  {
+    "day": 27,
+    "sanskrit": "त्रिविधं नरकस्येदं द्वारं नाशनमात्मनः — कामः क्रोधः लोभः",
+    "transliteration": "Trividhaṁ narakasyedaṁ dvāraṁ nāśanam ātmanaḥ — kāmaḥ krodhaḥ lobhaḥ — Gītā 16.21",
+    "meaning": "Desire, anger, and greed are the gates to self-destruction."
+  },
+  {
+    "day": 28,
+    "sanskrit": "सर्वत्र समदर्शनः",
+    "transliteration": "Sarvatra sama-darśanaḥ — Gītā 6.29",
+    "meaning": "The wise see all beings with equal vision."
+  },
+  {
+    "day": 29,
+    "sanskrit": "युक्ताहारविहारस्य योगो भवति दुःखहा",
+    "transliteration": "Yuktāhāra-vihārasya yogaḥ bhavati duḥkha-hā — Gītā 6.17",
+    "meaning": "Balance in food, movement, effort, and rest destroys sorrow."
+  },
+  {
+    "day": 30,
+    "sanskrit": "यं लब्ध्वा चापरं लाभं मन्यते नाधिकं ततः",
+    "transliteration": "Yaṁ labdhvā cāparaṁ lābhaṁ manyate nādhikaṁ tataḥ — Gītā 6.22",
+    "meaning": "Finding inner joy, one knows no higher gain."
+  },
+  {
+    "day": 31,
+    "sanskrit": "न हि ज्ञानेन सदृशं पवित्रमिह विद्यते",
+    "transliteration": "Na hi jñānena sadṛśaṁ pavitraṁ iha vidyate — Gītā 4.38",
+    "meaning": "Nothing purifies like knowledge."
+  },
+  {
+    "day": 32,
+    "sanskrit": "तद्विद्धि प्रणिपातेन परिप्रश्नेन सेवया",
+    "transliteration": "Tad viddhi praṇipātena paripraśnena sevayā — Gītā 4.34",
+    "meaning": "Approach the wise with humility and inquiry."
+  },
+  {
+    "day": 33,
+    "sanskrit": "ज्ञानाग्निः सर्वकर्माणि भस्मसात्कुरुते तथा",
+    "transliteration": "Jñānāgniḥ sarva-karmāṇi bhasmasāt kurute tathā — Gītā 4.37",
+    "meaning": "The fire of wisdom burns all actions to ashes."
+  },
+  {
+    "day": 34,
+    "sanskrit": "विद्यां चाविद्यां च यस्तद्वेदो भयं सह",
+    "transliteration": "Vidyaṁ cāvidyaṁ ca yas tad vedo bhayaṁ saha — Īśa Up. 11",
+    "meaning": "Knowing both knowledge and ignorance, one transcends death."
+  },
+  {
+    "day": 35,
+    "sanskrit": "तत्त्वमसि",
+    "transliteration": "Tat tvam asi — Chāndogya Up. 6.8.7",
+    "meaning": "\"You are That\" — the infinite Self."
+  },
+  {
+    "day": 36,
+    "sanskrit": "यथा दीपो निवातस्थो नेङ्गते सोपमा स्मृता",
+    "transliteration": "Yathā dīpo nivāta-stho neṅgate sopamā smṛtā — Gītā 6.19",
+    "meaning": "The mind steady like a lamp in still air."
+  },
+  {
+    "day": 37,
+    "sanskrit": "सर्वं खल्विदं ब्रह्म",
+    "transliteration": "Sarvaṁ khalv idaṁ brahma — Chāndogya Up. 3.14.1",
+    "meaning": "All this is the Divine."
+  },
+  {
+    "day": 38,
+    "sanskrit": "तमेव भान्तमनुभाति सर्वम्",
+    "transliteration": "Tameva bhāntam anubhāti sarvaṁ — Katha Up. 2.2.15",
+    "meaning": "By His light all shines."
+  },
+  {
+    "day": 39,
+    "sanskrit": "ज्ञानेन तु तदज्ञानं नाशितं येन भास्वतः",
+    "transliteration": "Jñānena tu tad-ajñānaṁ nāśitaṁ yeṇa bhāsvataḥ — Gītā 5.16",
+    "meaning": "When knowledge rises, ignorance vanishes."
+  },
+  {
+    "day": 40,
+    "sanskrit": "नेहाभिक्रमनाशोऽस्ति प्रत्यवायो न विद्यते",
+    "transliteration": "Neha abhikrama-nāśo'sti pratyavāyo na vidyate — Gītā 2.40",
+    "meaning": "No effort on this path is ever lost."
+  },
+  {
+    "day": 41,
+    "sanskrit": "अभ्यासवैराग्याभ्यां तन्निरोधः",
+    "transliteration": "Abhyāsa-vairāgyābhyāṁ tan-nirodhaḥ — Yoga Sūtra 1.12",
+    "meaning": "The mind is stilled by practice and detachment."
+  },
+  {
+    "day": 42,
+    "sanskrit": "शनैः शनैरुपरमेद्बुद्ध्या धृतिगृहीतया",
+    "transliteration": "Śanaiḥ śanaiḥ uparamed buddhyā dhṛti-gṛhītayā — Gītā 6.25",
+    "meaning": "Gradually, with firm resolve, bring the mind to rest."
+  },
+  {
+    "day": 43,
+    "sanskrit": "ज्योतिषामपि तज्ज्योतिस्तमसः परमुच्यते। ज्ञानं ज्ञेयं ज्ञानगम्यं हृदि सर्वस्य विष्ठितम्",
+    "transliteration": "Jyotisām api taj jyotis tamasah param ucyate, Jñānam jñeyam jñāna-gamyam hrdi sarvasya visthitam — Bhagavad Gītā 13.17",
+    "meaning": "The Light beyond darkness shines in every heart."
+  },
+  {
+    "day": 44,
+    "sanskrit": "नात्यश्नतस्तु योगोऽस्ति न चैकान्तमनश्नतः",
+    "transliteration": "Nāty-aśnatas tu yogo'sti na caikānta-manaśnataḥ — Gītā 6.16",
+    "meaning": "Yoga is for neither the overeater nor the abstainer."
+  },
+  {
+    "day": 45,
+    "sanskrit": "संन्यस्तकर्मणां ज्ञानं यः पश्यति स पश्यति",
+    "transliteration": "Saṁnyasta-karmaṇāṁ jñānaṁ yaḥ paśyati sa paśyati — Gītā 4.18",
+    "meaning": "Truly sees who knows that disciplined action leads to wisdom."
+  },
+  {
+    "day": 46,
+    "sanskrit": "मनः प्रशम्य सर्वत्र समं बुद्धिं न वर्तयेत्",
+    "transliteration": "Manaḥ praśamya sarvatra samaṁ buddhiṁ na vartayet — Gītā 6.8",
+    "meaning": "Calm the mind, hold steady understanding everywhere."
+  },
+  {
+    "day": 47,
+    "sanskrit": "तपस्विभ्योऽधिको योगी ज्ञानिभ्योऽपि मतोऽधिकः",
+    "transliteration": "Tapasvibhyo'dhiko yogī jñānibhyo'pi mato'dhikaḥ — Gītā 6.46",
+    "meaning": "The yogi is greater than ascetic or scholar."
+  },
+  {
+    "day": 48,
+    "sanskrit": "सर्वत्र समदर्शनः",
+    "transliteration": "Sarvatra sama-darśanah — Bhagavad Gītā 6.29",
+    "meaning": "The wise see all beings with equal vision."
+  },
+  {
+    "day": 49,
+    "sanskrit": "उद्यमेन हि सिध्यन्ति कार्याणि न मनोरथैः",
+    "transliteration": "Udyamena hi sidhyanti kāryāṇi na manorathaiḥ — Hitopadeśa",
+    "meaning": "Success comes through effort, not mere wishing."
+  },
+  {
+    "day": 50,
+    "sanskrit": "ईशावास्यमिदं सर्वं यत्किञ्च जगत्यां जगत्। तेन त्यक्तेन भुञ्जीथा मा गृधः कस्य स्विद्धनम्",
+    "transliteration": "Īśāvāsyam idam sarvam yat kiñca jagatyām jagat, Tena tyaktena bhuñjīthā mā grdhah kasya svid dhanam — Īśa Upanisad 1",
+    "meaning": "All is pervaded by the Divine — enjoy without attachment."
+  },
+  {
+    "day": 51,
+    "sanskrit": "अद्वेष्टा सर्वभूतानां मैत्रः करुण एव च",
+    "transliteration": "Adveṣṭā sarva-bhūtānāṁ maitraḥ karuṇa eva ca — Gītā 12.13",
+    "meaning": "Friendly and compassionate toward all, hating none."
+  },
+  {
+    "day": 52,
+    "sanskrit": "सर्वभूतहिते रताः",
+    "transliteration": "Sarva-bhūta-hite ratāḥ — Gītā 12.4",
+    "meaning": "They rejoice in the welfare of all beings."
+  },
+  {
+    "day": 53,
+    "sanskrit": "परोपकारार्थमिदं शरीरम्",
+    "transliteration": "Paropakārārtham idaṁ śarīram — Tirukkural",
+    "meaning": "The body exists to serve others."
+  },
+  {
+    "day": 54,
+    "sanskrit": "अहिंसा परमो धर्मः",
+    "transliteration": "Ahiṁsā paramo dharmaḥ — Mahābhārata",
+    "meaning": "Non-violence is the highest virtue."
+  },
+  {
+    "day": 55,
+    "sanskrit": "यो न हृष्यति न द्वेष्टि न शोचति न काङ्क्षति। शुभाशुभपरित्यागी भक्तिमान्यः स मे प्रियः",
+    "transliteration": "yo na hṛṣyati na dveṣṭi na śocati na kāṅkṣati śubhāśubha-parityāgī bhaktimān yaḥ sa me priyaḥ — Gītā 12.17",
+    "meaning": "The unattached and balanced one attains peace."
+  },
+  {
+    "day": 56,
+    "sanskrit": "अयं निजः परो वेति वसुधैव कुटुम्बकम्",
+    "transliteration": "Ayam nijaḥ paro veti Vasudhaiva Kuṭumbakam — Mahā Up. 6.72",
+    "meaning": "The noble see the world as one family."
+  },
+  {
+    "day": 57,
+    "sanskrit": "सुहृन्मित्रार्युदासीनमध्यस्थद्वेष्यबन्धुषु। साधुष्वपि च पापेषु समबुद्धिर्विशिष्यते",
+    "transliteration": "suhṛn-mitrāry-udāsīna-madhyastha-dveṣya-bandhuṣu sādhuṣv-api ca pāpeṣu sama-buddhir-viśiṣyate — Gītā 6.9",
+    "meaning": "Seeing friend and foe alike, one is the supreme yogi."
+  },
+  {
+    "day": 58,
+    "sanskrit": "अनुद्वेगकरं वाक्यं सत्यं प्रियहितं च यत्",
+    "transliteration": "Anudvega-karaṁ vākyaṁ satyaṁ priya-hitaṁ ca yat — Gītā 17.15",
+    "meaning": "Speak truth that is kind and beneficial."
+  },
+  {
+    "day": 59,
+    "sanskrit": "यः पश्यति सर्वत्र भगवन्तमनन्यधीः",
+    "transliteration": "Yaḥ paśyati sarvatra bhagavantam ananyadhīḥ — Gītā 13.27-28",
+    "meaning": "Seeing the Divine in all, one neither harms nor is harmed."
+  },
+  {
+    "day": 60,
+    "sanskrit": "यदन्येषां हितं नित्यं तत्कर्म स्वयमाचरेत्",
+    "transliteration": "Yad anyeṣāṁ hitaṁ nityaṁ tat karma svayam ācaret — Smṛti verse",
+    "meaning": "One should do always what benefits others."
+  },
+  {
+    "day": 61,
+    "sanskrit": "मन्मना भव मद्भक्तो",
+    "transliteration": "Man-manā bhava mad-bhakto — Gītā 9.34",
+    "meaning": "Think of Me, be devoted to Me, worship Me."
+  },
+  {
+    "day": 62,
+    "sanskrit": "अनन्याश्चिन्तयन्तो मां योगक्षेमं वहाम्यहम्",
+    "transliteration": "Ananyāś cintayanto māṁ yoga-kṣemaṁ vahāmy aham — Gītā 9.22",
+    "meaning": "To the devoted, I provide and protect."
+  },
+  {
+    "day": 63,
+    "sanskrit": "पत्रं पुष्पं फलं तोयं भक्त्या प्रयच्छति",
+    "transliteration": "Patraṁ puṣpaṁ phalaṁ toyaṁ bhaktyā prayacchati — Gītā 9.26",
+    "meaning": "A leaf, flower, fruit, or water offered with love is accepted."
+  },
+  {
+    "day": 64,
+    "sanskrit": "अहं भक्तपराधीनो",
+    "transliteration": "Ahaṁ bhakta-parādhīno — Bhāgavata Purāṇa 9.4.63",
+    "meaning": "I am bound by the love of My devotees."
+  },
+  {
+    "day": 65,
+    "sanskrit": "मय्येव मन आधत्स्व मयि बुद्धिं निवेशय",
+    "transliteration": "Mayy eva mana ādhatsva mayi buddhiṁ niveśaya — Gītā 12.8",
+    "meaning": "Fix your mind and understanding on Me."
+  },
+  {
+    "day": 66,
+    "sanskrit": "श्रद्धावाँल्लभते ज्ञानं तत्परः संयतेन्द्रियः",
+    "transliteration": "Śraddhāvān labhate jñānaṁ tat-paraḥ saṁyatendriyaḥ — Gītā 4.39",
+    "meaning": "The faithful and self-controlled gain wisdom and peace."
+  },
+  {
+    "day": 67,
+    "sanskrit": "सततं कीर्तयन्तो मां यतन्तश्च दृढव्रताः",
+    "transliteration": "Satataṁ kīrtayanto māṁ yatantaś ca dṛḍha-vratāḥ — Gītā 9.14",
+    "meaning": "Those who sing My praise with firm resolve dwell in Me."
+  },
+  {
+    "day": 68,
+    "sanskrit": "भज गोविन्दं भज गोविन्दम्",
+    "transliteration": "Bhaja Govindaṁ bhaja Govindaṁ — Bhaja Govindam 1",
+    "meaning": "Worship the Divine; learning alone cannot save."
+  },
+  {
+    "day": 69,
+    "sanskrit": "भक्त्या मामभिजानाति यावान्यश्चास्मि तत्त्वतः",
+    "transliteration": "Bhaktyā mām abhijānāti yāvān yaś cāsmi tattvataḥ — Gītā 18.55",
+    "meaning": "Through devotion alone I am truly known."
+  },
+  {
+    "day": 70,
+    "sanskrit": "तेषां सततयुक्तानां भजतां प्रीतिपूर्वकम्",
+    "transliteration": "Teṣāṁ satata-yuktānāṁ bhajatāṁ prīti-pūrvakam — Gītā 10.10",
+    "meaning": "To the ever-devoted, I grant inner wisdom."
+  },
+  {
+    "day": 71,
+    "sanskrit": "त्यक्त्वा कर्मफलासङ्गं नित्यतृप्तो निराश्रयः",
+    "transliteration": "Tyaktvā karma-phala-saṅgaṁ nitya-tṛpto nirāśrayaḥ — Gītā 4.20",
+    "meaning": "Free from results, content, and independent."
+  },
+  {
+    "day": 72,
+    "sanskrit": "नैव किञ्चित्करोमीति युक्तो मन्येत तत्त्ववित्",
+    "transliteration": "Naiva kiñcit karomīti yukto manyeta tattva-vit — Gītā 5.8",
+    "meaning": "The wise think, \"I do nothing at all,\" even while acting."
+  },
+  {
+    "day": 73,
+    "sanskrit": "सर्वकर्माण्यपि सदा कुर्वाणो मद्व्यपाश्रयः",
+    "transliteration": "Sarva-karmaṇy api sadā kurvāṇo mad-vyapāśrayaḥ — Gītā 18.56",
+    "meaning": "Acting in Me, one attains the eternal by My grace."
+  },
+  {
+    "day": 74,
+    "sanskrit": "दृष्टानुश्रविकविषयवितृष्णस्य वशीकारसंज्ञा वैराग्यम्",
+    "transliteration": "Drstānuśravika-visaya-vitrsnasya vaśīkāra-samjñā vairāgyam — Yoga Sūtra 1.15",
+    "meaning": "Vairāgya is freedom from desire for pleasures seen or heard of."
+  },
+  {
+    "day": 75,
+    "sanskrit": "न कर्तृत्वं न कर्माणि लोकस्य सृजति प्रभुः",
+    "transliteration": "Na kartṛtvaṁ na karmāṇi lokasya sṛjati prabhuḥ — Gītā 5.14",
+    "meaning": "The Lord does not create actions; nature acts."
+  },
+  {
+    "day": 76,
+    "sanskrit": "निराशीर्यतचित्तात्मा त्यक्तसर्वपरिग्रहः",
+    "transliteration": "Nirāśīr yata-cittātmā tyakta-sarva-parigrahaḥ — Gītā 4.21",
+    "meaning": "Free of desire and possession, one is at peace."
+  },
+  {
+    "day": 77,
+    "sanskrit": "निरहङ्कारः निर्ममः शान्तः निःस्पृहः",
+    "transliteration": "Nirahankāraḥ nirmamaḥ śāntaḥ niḥspṛhaḥ — Gītā 18.53",
+    "meaning": "Ego-free, peaceful, and desireless — truly free."
+  },
+  {
+    "day": 78,
+    "sanskrit": "अहो अहं नमो मह्यं विनाशो यस्य नास्ति मे। ब्रह्मादिस्तम्बपर्यन्तं जगन्नाशेऽपि तिष्ठतः",
+    "transliteration": "Aho aham namo mahyam vināśo yasya nāsti me, Brahmādistambaparyantam jagannāśe'pi tisthatah — Astāvakra Gītā 2.11",
+    "meaning": "The true Self in me is indestructible — beyond the rise and fall of the world."
+  },
+  {
+    "day": 79,
+    "sanskrit": "प्रसादे सर्वदुःखानां हानिरस्योपजायते",
+    "transliteration": "Prasāde sarva-duḥkhānāṁ hānir asyopajāyate — Gītā 2.65",
+    "meaning": "From serenity arises the end of sorrow."
+  },
+  {
+    "day": 80,
+    "sanskrit": "जितात्मनः प्रशान्तस्य परमात्मा समाहितः। शीतोष्णसुखदुःखेषु तथा मानापमानयोः",
+    "transliteration": "Jitātmanah praśāntasya paramātmā samāhitah, śītosna-sukha-duhkhesu tathā mānāpamānayoh — Bhagavad Gītā 6.7",
+    "meaning": "The calm, self-controlled one sees the Divine and stays steady in dualities."
+  },
+  {
+    "day": 81,
+    "sanskrit": "ब्रह्मभूतः प्रसन्नात्मा न शोचति न काङ्क्षति",
+    "transliteration": "Brahma-bhūtaḥ prasannātmā na śocati na kāṅkṣati — Gītā 18.54",
+    "meaning": "The Self-realized is serene, beyond sorrow and desire."
+  },
+  {
+    "day": 82,
+    "sanskrit": "लभन्ते ब्रह्मनिर्वाणमृषयः क्षीणकल्मषाः। छिन्नद्वैधा यतात्मानः सर्वभूतहिते रताः",
+    "transliteration": "Labhante brahma-nirvānam rsayah ksīna-kalmasāh, chinna-dvaidhā yatātmānah sarva-bhūta-hite ratāh — Bhagavad Gītā 5.25",
+    "meaning": "Those who live for others' good find peace, purity, and divine freedom."
+  },
+  {
+    "day": 83,
+    "sanskrit": "यदा भूतपृथग्भावमेकस्थमनुपश्यति",
+    "transliteration": "Yadā bhūta-pṛthag-bhāvam ekastham anupaśyati — Gītā 13.31",
+    "meaning": "Seeing all beings in the One, one attains the Infinite."
+  },
+  {
+    "day": 84,
+    "sanskrit": "सर्वभूतस्थमात्मानं सर्वभूतानि चात्मनि",
+    "transliteration": "Sarva-bhūta-stham ātmānaṁ sarva-bhūtāni cātmani — Īśa Up. 6",
+    "meaning": "See the Self in all beings and all in the Self."
+  },
+  {
+    "day": 85,
+    "sanskrit": "यत्र न च काङ्क्षति न द्वेष्टि स भक्तो मे प्रियः",
+    "transliteration": "Yatra na ca kāṅkṣati na dveṣṭi sa bhakto me priyaḥ — Gītā 12.17",
+    "meaning": "The one who neither desires nor hates is dear to Me."
+  },
+  {
+    "day": 86,
+    "sanskrit": "भिद्यते हृदयग्रन्थिश्छिद्यन्ते सर्वसंशयाः। क्षीयन्ते चास्य कर्माणि तस्मिन्दृष्टे परावरे",
+    "transliteration": "Bhidyate hrdaya-granthiś chidyante sarva-samśayāh, ksīyante cāsya karmāni tasmin drste parāvare — Mundaka Upanisad 2.2.8",
+    "meaning": "Seeing the Supreme, all doubts end — revealing perfect, peaceful, endless bliss."
+  },
+  {
+    "day": 87,
+    "sanskrit": "शान्ताकारं भुजगशयनं पद्मनाभं सुरेशम्",
+    "transliteration": "Śāntākāraṁ bhujaga-śayanaṁ padma-nābhaṁ sureśam — Viṣṇu Śloka",
+    "meaning": "The Lord rests on infinity; His nature is peace."
+  },
+  {
+    "day": 88,
+    "sanskrit": "न तस्य रोगो न जरा न मृत्युः",
+    "transliteration": "Na tasya rogo na jarā na mṛtyuḥ — Śvetāśvatara Up. 2.12",
+    "meaning": "The yogic one is untouched by disease, decay, or death."
+  },
+  {
+    "day": 89,
+    "sanskrit": "तमेवैकं जानथ आत्मानमनन्तम्",
+    "transliteration": "Tam evaikaṁ jānatha ātmānam anantam — Muṇḍaka Up. 1.1.4",
+    "meaning": "Know the Infinite Self — knowing It, all is known."
+  },
+  {
+    "day": 90,
+    "sanskrit": "शान्तिः शान्तिः शान्तिः",
+    "transliteration": "Śāntiḥ śāntiḥ śāntiḥ — Śānti Mantra",
+    "meaning": "Peace, peace, peace — within and without."
   }
 ]
