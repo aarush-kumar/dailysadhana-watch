@@ -31,9 +31,8 @@ export default function Profile() {
     }, []);
 
     const handleLogout = async () => {
-        // In a real app, call logout API to clear cookie
         document.cookie = 'sadhana_session=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-        router.push('/login');
+        window.location.href = '/login';
     };
 
     if (loading) return <div className="container" style={{ padding: '100px 0', textAlign: 'center' }}>Loading...</div>;
