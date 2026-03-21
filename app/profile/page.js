@@ -30,9 +30,8 @@ export default function Profile() {
         checkAuth();
     }, []);
 
-    const handleLogout = async () => {
-        document.cookie = 'sadhana_session=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-        window.location.href = '/login';
+    const handleLogout = () => {
+        window.location.href = '/api/auth/logout';
     };
 
     if (loading) return <div className="container" style={{ padding: '100px 0', textAlign: 'center' }}>Loading...</div>;
