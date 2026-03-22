@@ -41,24 +41,13 @@ const FullscreenIcon = () => (
     </svg>
 );
 
-const ExitFullscreenIcon = () => (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M8 3v3a2 2 0 01-2 2H3" />
-        <path d="M21 8h-3a2 2 0 01-2-2V3" />
-        <path d="M3 16h3a2 2 0 012 2v3" />
-        <path d="M16 21v-3a2 2 0 012-2h3" />
-    </svg>
-);
-
 export default function VideoPlayer({ videoUrl, onProgress }) {
     const [playing, setPlaying] = useState(false);
     const [progress, setProgress] = useState(0);
     const [duration, setDuration] = useState(0);
     const [muted, setMuted] = useState(false);
-    const [isFullscreen, setIsFullscreen] = useState(false);
     const [showControls, setShowControls] = useState(true);
     const videoRef = useRef(null);
-    const containerRef = useRef(null);
     const controlsTimeout = useRef(null);
     const progressReported = useRef(false);
 
@@ -99,39 +88,29 @@ export default function VideoPlayer({ videoUrl, onProgress }) {
 
     const toggleFullscreen = (e) => {
         e.stopPropagation();
-        const container = containerRef.current;
+        const video = videoRef.current;
 
+        // iOS Safari — use native fullscreen (gives skip 10s, AirPlay, PiP etc.)
+        if (video.webkitEnterFullscreen) {
+            video.webkitEnterFullscreen();
+            return;
+        }
+
+        // Desktop browsers — use Fullscreen API on the video element
         if (!document.fullscreenElement && !document.webkitFullscreenElement) {
-            // Enter fullscreen on the container div (keeps our custom controls)
-            if (container.requestFullscreen) {
-                container.requestFullscreen();
-            } else if (container.webkitRequestFullscreen) {
-                container.webkitRequestFullscreen();
-            } else if (videoRef.current.webkitEnterFullscreen) {
-                // iOS Safari fallback — native fullscreen on video element
-                videoRef.current.webkitEnterFullscreen();
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.webkitRequestFullscreen) {
+                video.webkitRequestFullscreen();
             }
-            setIsFullscreen(true);
         } else {
             if (document.exitFullscreen) {
                 document.exitFullscreen();
             } else if (document.webkitExitFullscreen) {
                 document.webkitExitFullscreen();
             }
-            setIsFullscreen(false);
         }
     };
-
-    // Listen for fullscreen change events (e.g. user presses Escape)
-    if (typeof window !== 'undefined') {
-        const handleFsChange = () => {
-            setIsFullscreen(!!document.fullscreenElement || !!document.webkitFullscreenElement);
-        };
-        if (typeof document !== 'undefined') {
-            document.addEventListener('fullscreenchange', handleFsChange);
-            document.addEventListener('webkitfullscreenchange', handleFsChange);
-        }
-    }
 
     const formatTime = (time) => {
         const minutes = Math.floor(time / 60);
@@ -149,7 +128,6 @@ export default function VideoPlayer({ videoUrl, onProgress }) {
 
     return (
         <div
-            ref={containerRef}
             className="video-container"
             onContextMenu={(e) => e.preventDefault()}
             onMouseMove={handleInteraction}
@@ -157,14 +135,12 @@ export default function VideoPlayer({ videoUrl, onProgress }) {
             style={{
                 position: 'relative',
                 backgroundColor: 'var(--color-dark)',
-                borderRadius: isFullscreen ? '0' : '16px',
+                borderRadius: '16px',
                 overflow: 'hidden',
-                aspectRatio: isFullscreen ? 'auto' : '9/16',
-                maxHeight: isFullscreen ? '100vh' : '65vh',
-                height: isFullscreen ? '100vh' : 'auto',
-                width: isFullscreen ? '100vw' : 'auto',
+                aspectRatio: '9/16',
+                maxHeight: '65vh',
                 margin: '0 auto',
-                boxShadow: isFullscreen ? 'none' : '0 12px 48px rgba(30, 27, 19, 0.12)',
+                boxShadow: '0 12px 48px rgba(30, 27, 19, 0.12)',
                 cursor: 'pointer'
             }}
         >
@@ -174,14 +150,9 @@ export default function VideoPlayer({ videoUrl, onProgress }) {
                 onTimeUpdate={handleTimeUpdate}
                 onLoadedMetadata={() => setDuration(videoRef.current.duration)}
                 onClick={togglePlay}
-                controlsList="nodownload nofullscreen noremoteplayback"
+                controlsList="nodownload noremoteplayback"
                 playsInline
-                style={{
-                    width: '100%',
-                    height: '100%',
-                    display: 'block',
-                    objectFit: isFullscreen ? 'contain' : 'cover'
-                }}
+                style={{ width: '100%', height: '100%', display: 'block', objectFit: 'cover' }}
             />
 
             {/* Tap overlay for play/pause while playing */}
@@ -280,7 +251,7 @@ export default function VideoPlayer({ videoUrl, onProgress }) {
                     </div>
                     <button
                         onClick={toggleFullscreen}
-                        aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
+                        aria-label="Enter fullscreen"
                         style={{
                             color: 'rgba(255,255,255,0.9)',
                             cursor: 'pointer',
@@ -292,7 +263,7 @@ export default function VideoPlayer({ videoUrl, onProgress }) {
                             justifyContent: 'center'
                         }}
                     >
-                        {isFullscreen ? <ExitFullscreenIcon /> : <FullscreenIcon />}
+                        <FullscreenIcon />
                     </button>
                 </div>
             </div>
