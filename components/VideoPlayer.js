@@ -2,13 +2,63 @@
 
 import { useState, useRef } from 'react';
 
+// Clean SVG icons
+const PlayIcon = () => (
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 5.14v14.72a1 1 0 001.5.86l11.5-7.36a1 1 0 000-1.72L9.5 4.28a1 1 0 00-1.5.86z" />
+    </svg>
+);
+
+const PauseIcon = () => (
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+        <rect x="6" y="4" width="4" height="16" rx="1" />
+        <rect x="14" y="4" width="4" height="16" rx="1" />
+    </svg>
+);
+
+const VolumeOnIcon = () => (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" />
+        <path d="M15.54 8.46a5 5 0 010 7.07" />
+        <path d="M19.07 4.93a10 10 0 010 14.14" />
+    </svg>
+);
+
+const VolumeOffIcon = () => (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" />
+        <line x1="23" y1="9" x2="17" y2="15" />
+        <line x1="17" y1="9" x2="23" y2="15" />
+    </svg>
+);
+
+const FullscreenIcon = () => (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M8 3H5a2 2 0 00-2 2v3" />
+        <path d="M21 8V5a2 2 0 00-2-2h-3" />
+        <path d="M3 16v3a2 2 0 002 2h3" />
+        <path d="M16 21h3a2 2 0 002-2v-3" />
+    </svg>
+);
+
+const ExitFullscreenIcon = () => (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M8 3v3a2 2 0 01-2 2H3" />
+        <path d="M21 8h-3a2 2 0 01-2-2V3" />
+        <path d="M3 16h3a2 2 0 012 2v3" />
+        <path d="M16 21v-3a2 2 0 012-2h3" />
+    </svg>
+);
+
 export default function VideoPlayer({ videoUrl, onProgress }) {
     const [playing, setPlaying] = useState(false);
     const [progress, setProgress] = useState(0);
     const [duration, setDuration] = useState(0);
     const [muted, setMuted] = useState(false);
+    const [isFullscreen, setIsFullscreen] = useState(false);
     const [showControls, setShowControls] = useState(true);
     const videoRef = useRef(null);
+    const containerRef = useRef(null);
     const controlsTimeout = useRef(null);
     const progressReported = useRef(false);
 
@@ -49,8 +99,39 @@ export default function VideoPlayer({ videoUrl, onProgress }) {
 
     const toggleFullscreen = (e) => {
         e.stopPropagation();
-        videoRef.current.requestFullscreen?.() || videoRef.current.webkitRequestFullscreen?.();
+        const container = containerRef.current;
+
+        if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+            // Enter fullscreen on the container div (keeps our custom controls)
+            if (container.requestFullscreen) {
+                container.requestFullscreen();
+            } else if (container.webkitRequestFullscreen) {
+                container.webkitRequestFullscreen();
+            } else if (videoRef.current.webkitEnterFullscreen) {
+                // iOS Safari fallback — native fullscreen on video element
+                videoRef.current.webkitEnterFullscreen();
+            }
+            setIsFullscreen(true);
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            }
+            setIsFullscreen(false);
+        }
     };
+
+    // Listen for fullscreen change events (e.g. user presses Escape)
+    if (typeof window !== 'undefined') {
+        const handleFsChange = () => {
+            setIsFullscreen(!!document.fullscreenElement || !!document.webkitFullscreenElement);
+        };
+        if (typeof document !== 'undefined') {
+            document.addEventListener('fullscreenchange', handleFsChange);
+            document.addEventListener('webkitfullscreenchange', handleFsChange);
+        }
+    }
 
     const formatTime = (time) => {
         const minutes = Math.floor(time / 60);
@@ -68,6 +149,7 @@ export default function VideoPlayer({ videoUrl, onProgress }) {
 
     return (
         <div
+            ref={containerRef}
             className="video-container"
             onContextMenu={(e) => e.preventDefault()}
             onMouseMove={handleInteraction}
@@ -75,12 +157,14 @@ export default function VideoPlayer({ videoUrl, onProgress }) {
             style={{
                 position: 'relative',
                 backgroundColor: 'var(--color-dark)',
-                borderRadius: '16px',
+                borderRadius: isFullscreen ? '0' : '16px',
                 overflow: 'hidden',
-                aspectRatio: '9/16',
-                maxHeight: '65vh',
+                aspectRatio: isFullscreen ? 'auto' : '9/16',
+                maxHeight: isFullscreen ? '100vh' : '65vh',
+                height: isFullscreen ? '100vh' : 'auto',
+                width: isFullscreen ? '100vw' : 'auto',
                 margin: '0 auto',
-                boxShadow: '0 12px 48px rgba(30, 27, 19, 0.12)',
+                boxShadow: isFullscreen ? 'none' : '0 12px 48px rgba(30, 27, 19, 0.12)',
                 cursor: 'pointer'
             }}
         >
@@ -92,8 +176,42 @@ export default function VideoPlayer({ videoUrl, onProgress }) {
                 onClick={togglePlay}
                 controlsList="nodownload nofullscreen noremoteplayback"
                 playsInline
-                style={{ width: '100%', height: '100%', display: 'block', objectFit: 'cover' }}
+                style={{
+                    width: '100%',
+                    height: '100%',
+                    display: 'block',
+                    objectFit: isFullscreen ? 'contain' : 'cover'
+                }}
             />
+
+            {/* Tap overlay for play/pause while playing */}
+            {playing && showControls && (
+                <button
+                    onClick={togglePlay}
+                    aria-label="Pause video"
+                    style={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        width: '64px',
+                        height: '64px',
+                        backgroundColor: 'rgba(0, 0, 0, 0.4)',
+                        backdropFilter: 'blur(8px)',
+                        WebkitBackdropFilter: 'blur(8px)',
+                        borderRadius: '50%',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        cursor: 'pointer',
+                        border: 'none',
+                        transition: 'opacity 0.3s ease',
+                        opacity: 0.8
+                    }}
+                >
+                    <PauseIcon />
+                </button>
+            )}
 
             {/* Bottom gradient + controls */}
             <div style={{
@@ -146,22 +264,40 @@ export default function VideoPlayer({ videoUrl, onProgress }) {
                         <button
                             onClick={toggleMute}
                             aria-label={muted ? 'Unmute' : 'Mute'}
-                            style={{ color: 'rgba(255,255,255,0.9)', cursor: 'pointer', fontSize: '20px', background: 'none', border: 'none' }}
+                            style={{
+                                color: 'rgba(255,255,255,0.9)',
+                                cursor: 'pointer',
+                                background: 'none',
+                                border: 'none',
+                                padding: '4px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center'
+                            }}
                         >
-                            {muted ? '🔇' : '🔊'}
+                            {muted ? <VolumeOffIcon /> : <VolumeOnIcon />}
                         </button>
                     </div>
                     <button
                         onClick={toggleFullscreen}
-                        aria-label="Toggle fullscreen"
-                        style={{ color: 'rgba(255,255,255,0.9)', cursor: 'pointer', fontSize: '20px', background: 'none', border: 'none' }}
+                        aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
+                        style={{
+                            color: 'rgba(255,255,255,0.9)',
+                            cursor: 'pointer',
+                            background: 'none',
+                            border: 'none',
+                            padding: '4px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center'
+                        }}
                     >
-                        ⛶
+                        {isFullscreen ? <ExitFullscreenIcon /> : <FullscreenIcon />}
                     </button>
                 </div>
             </div>
 
-            {/* Center Play Button */}
+            {/* Center Play Button (when paused) */}
             {!playing && (
                 <button
                     onClick={togglePlay}
@@ -181,13 +317,10 @@ export default function VideoPlayer({ videoUrl, onProgress }) {
                         cursor: 'pointer',
                         boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
                         transition: 'transform 0.2s ease',
-                        border: 'none',
-                        color: 'white',
-                        fontSize: '32px',
-                        paddingLeft: '4px'
+                        border: 'none'
                     }}
                 >
-                    ▶
+                    <PlayIcon />
                 </button>
             )}
         </div>
