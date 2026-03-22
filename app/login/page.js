@@ -371,7 +371,8 @@ function LoginContent() {
                                             onKeyDown={(e) => handleOtpKeyDown(i, e)}
                                             onPaste={i === 0 ? handleOtpPaste : undefined}
                                             style={{
-                                                width: '48px',
+                                                flex: 1,
+                                                minWidth: 0,
                                                 height: '56px',
                                                 textAlign: 'center',
                                                 fontSize: '20px',
