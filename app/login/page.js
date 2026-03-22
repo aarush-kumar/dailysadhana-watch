@@ -407,7 +407,7 @@ function LoginContent() {
                                 ) : (
                                     <button
                                         type="button"
-                                        onClick={() => { setStep('phone'); setOtp(['', '', '', '', '', '']); setError(''); }}
+                                        onClick={() => { setOtp(['', '', '', '', '', '']); setError(''); handleSendOtp({ preventDefault: () => {} }); }}
                                         style={{
                                             fontFamily: 'var(--font-label)',
                                             fontSize: '11px',

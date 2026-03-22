@@ -410,20 +410,20 @@ export default function Home() {
             </footer>
 
             {/* Bottom Navigation - Mobile Only */}
-            <nav className="home-bottom-nav">
-                <Link href="/" style={{
+            <nav className="home-bottom-nav" aria-label="Main navigation">
+                <Link href="/" aria-label="Home" style={{
                     display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
                     backgroundColor: 'var(--color-maroon)', color: 'white',
                     borderRadius: '50%', width: '56px', height: '56px',
                     boxShadow: '0 4px 16px rgba(93, 31, 31, 0.25)',
                     textDecoration: 'none', fontSize: '22px'
                 }}>🏠</Link>
-                <Link href="/dashboard" style={{
+                <Link href="/dashboard" aria-label="Progress" style={{
                     display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
                     color: 'rgba(30, 27, 19, 0.4)', width: '48px', height: '48px',
                     textDecoration: 'none', fontSize: '22px'
                 }}>📊</Link>
-                <Link href="/profile" style={{
+                <Link href="/profile" aria-label="Profile" style={{
                     display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
                     color: 'rgba(30, 27, 19, 0.4)', width: '48px', height: '48px',
                     textDecoration: 'none', fontSize: '22px'

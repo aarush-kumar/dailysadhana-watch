@@ -86,15 +86,16 @@ export default function DayPage({ params: paramsPromise }) {
 
             {/* Desktop Top Nav */}
             <nav className="desktop-nav-day">
-                <div style={{
+                <Link href="/dashboard" style={{
                     fontFamily: 'var(--font-heading)',
                     fontSize: '1.5rem',
                     fontWeight: '700',
                     color: 'var(--color-gold)',
-                    letterSpacing: '-0.02em'
+                    letterSpacing: '-0.02em',
+                    textDecoration: 'none'
                 }}>
                     Daily Sādhanā
-                </div>
+                </Link>
                 <div style={{ display: 'flex', gap: '40px', alignItems: 'center' }}>
                     <Link href="/dashboard" style={{
                         fontFamily: 'var(--font-heading)',
@@ -284,20 +285,18 @@ export default function DayPage({ params: paramsPromise }) {
             </main>
 
             {/* Bottom Navigation - Mobile Only */}
-            <nav className="mobile-bottom-nav-day">
-                <Link href="/dashboard" style={{
+            <nav className="mobile-bottom-nav-day" aria-label="Main navigation">
+                <Link href="/" aria-label="Home" style={{
                     display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-                    backgroundColor: 'var(--color-maroon)', color: 'white',
-                    borderRadius: '50%', width: '56px', height: '56px',
-                    boxShadow: '0 4px 16px rgba(93, 31, 31, 0.25)',
+                    color: 'rgba(30, 27, 19, 0.4)', width: '48px', height: '48px',
                     textDecoration: 'none', fontSize: '22px'
                 }}>🏠</Link>
-                <Link href="/dashboard" style={{
+                <Link href="/dashboard" aria-label="Progress" style={{
                     display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
                     color: 'rgba(30, 27, 19, 0.4)', width: '48px', height: '48px',
                     textDecoration: 'none', fontSize: '22px'
                 }}>📊</Link>
-                <Link href="/profile" style={{
+                <Link href="/profile" aria-label="Profile" style={{
                     display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
                     color: 'rgba(30, 27, 19, 0.4)', width: '48px', height: '48px',
                     textDecoration: 'none', fontSize: '22px'
@@ -352,7 +351,7 @@ export default function DayPage({ params: paramsPromise }) {
                     z-index: 100;
                 }
 
-                @media (min-width: 1024px) {
+                @media (min-width: 768px) {
                     .desktop-nav-day {
                         display: flex !important;
                         justify-content: space-between;

@@ -47,15 +47,16 @@ export default function Profile() {
 
             {/* Desktop Top Nav */}
             <nav className="profile-desktop-nav">
-                <div style={{
+                <Link href="/dashboard" style={{
                     fontFamily: 'var(--font-heading)',
                     fontSize: '1.5rem',
                     fontWeight: '700',
                     color: 'var(--color-gold)',
-                    letterSpacing: '-0.02em'
+                    letterSpacing: '-0.02em',
+                    textDecoration: 'none'
                 }}>
                     Daily Sādhanā
-                </div>
+                </Link>
                 <div style={{ display: 'flex', gap: '40px', alignItems: 'center' }}>
                     <Link href="/dashboard" style={{
                         fontFamily: 'var(--font-heading)',
@@ -66,7 +67,10 @@ export default function Profile() {
                     <Link href="/profile" style={{
                         fontFamily: 'var(--font-heading)',
                         fontSize: '1.1rem',
-                        color: 'rgba(30, 27, 19, 0.6)',
+                        color: 'var(--color-maroon)',
+                        fontWeight: '700',
+                        borderBottom: '2px solid var(--color-gold)',
+                        paddingBottom: '4px',
                         transition: 'all 0.3s ease'
                     }}>Profile</Link>
                 </div>
@@ -305,18 +309,18 @@ export default function Profile() {
             </main>
 
             {/* Bottom Navigation - Mobile Only */}
-            <nav className="profile-bottom-nav">
-                <Link href="/dashboard" style={{
+            <nav className="profile-bottom-nav" aria-label="Main navigation">
+                <Link href="/" aria-label="Home" style={{
                     display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
                     color: 'rgba(30, 27, 19, 0.4)', width: '48px', height: '48px',
                     textDecoration: 'none', fontSize: '22px'
                 }}>🏠</Link>
-                <Link href="/dashboard" style={{
+                <Link href="/dashboard" aria-label="Progress" style={{
                     display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
                     color: 'rgba(30, 27, 19, 0.4)', width: '48px', height: '48px',
                     textDecoration: 'none', fontSize: '22px'
                 }}>📊</Link>
-                <Link href="/profile" style={{
+                <Link href="/profile" aria-label="Profile" style={{
                     display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
                     backgroundColor: 'var(--color-maroon)', color: 'white',
                     borderRadius: '50%', width: '56px', height: '56px',

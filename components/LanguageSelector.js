@@ -19,6 +19,7 @@ export default function LanguageSelector({ activeLanguage, onSelect }) {
                 <button
                     key={lang.code}
                     onClick={() => onSelect(lang.code)}
+                    aria-pressed={activeLanguage === lang.code}
                     style={{
                         padding: '10px 20px',
                         borderRadius: '9999px',

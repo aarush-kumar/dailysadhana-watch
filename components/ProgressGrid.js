@@ -15,6 +15,7 @@ export default function ProgressGrid({ progress = [] }) {
                             key={dayNum}
                             href={`/day/${dayNum}`}
                             className="progress-cell"
+                            aria-label={`Day ${dayNum}${isWatched ? ', completed' : ''}`}
                             style={{
                                 aspectRatio: '1',
                                 display: 'flex',

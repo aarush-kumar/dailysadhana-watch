@@ -52,15 +52,16 @@ export default function Dashboard() {
 
             {/* Desktop Top Nav */}
             <nav className="desktop-nav">
-                <div style={{
+                <Link href="/dashboard" style={{
                     fontFamily: 'var(--font-heading)',
                     fontSize: '1.5rem',
                     fontWeight: '700',
                     color: 'var(--color-gold)',
-                    letterSpacing: '-0.02em'
+                    letterSpacing: '-0.02em',
+                    textDecoration: 'none'
                 }}>
                     Daily Sādhanā
-                </div>
+                </Link>
                 <div style={{ display: 'flex', gap: '40px', alignItems: 'center' }}>
                     <Link href="/dashboard" style={{
                         fontFamily: 'var(--font-heading)',
@@ -306,8 +307,20 @@ export default function Dashboard() {
             </main>
 
             {/* Bottom Navigation - Mobile Only */}
-            <nav className="mobile-bottom-nav">
-                <Link href="/dashboard" style={{
+            <nav className="mobile-bottom-nav" aria-label="Main navigation">
+                <Link href="/" aria-label="Home" style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'rgba(30, 27, 19, 0.4)',
+                    width: '48px',
+                    height: '48px',
+                    textDecoration: 'none',
+                    fontSize: '22px'
+                }}>
+                    🏠
+                </Link>
+                <Link href="/dashboard" aria-label="Progress" style={{
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -320,21 +333,9 @@ export default function Dashboard() {
                     textDecoration: 'none',
                     fontSize: '22px'
                 }}>
-                    🏠
-                </Link>
-                <Link href="/dashboard" style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: 'rgba(30, 27, 19, 0.4)',
-                    width: '48px',
-                    height: '48px',
-                    textDecoration: 'none',
-                    fontSize: '22px'
-                }}>
                     📊
                 </Link>
-                <Link href="/profile" style={{
+                <Link href="/profile" aria-label="Profile" style={{
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',

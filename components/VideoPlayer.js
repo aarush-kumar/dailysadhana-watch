@@ -1,14 +1,16 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 
 export default function VideoPlayer({ videoUrl, onProgress }) {
     const [playing, setPlaying] = useState(false);
     const [progress, setProgress] = useState(0);
     const [duration, setDuration] = useState(0);
+    const [muted, setMuted] = useState(false);
     const [showControls, setShowControls] = useState(true);
     const videoRef = useRef(null);
     const controlsTimeout = useRef(null);
+    const progressReported = useRef(false);
 
     const togglePlay = () => {
         if (videoRef.current.paused) {
@@ -25,7 +27,9 @@ export default function VideoPlayer({ videoUrl, onProgress }) {
         const total = videoRef.current.duration;
         setProgress((current / total) * 100);
 
-        if (current / total > 0.9) {
+        // Report progress once at 90% — debounced
+        if (current / total > 0.9 && !progressReported.current) {
+            progressReported.current = true;
             onProgress(Math.floor(current));
         }
     };
@@ -35,6 +39,17 @@ export default function VideoPlayer({ videoUrl, onProgress }) {
         const x = e.clientX - rect.left;
         const percent = x / rect.width;
         videoRef.current.currentTime = percent * videoRef.current.duration;
+    };
+
+    const toggleMute = (e) => {
+        e.stopPropagation();
+        videoRef.current.muted = !videoRef.current.muted;
+        setMuted(!muted);
+    };
+
+    const toggleFullscreen = (e) => {
+        e.stopPropagation();
+        videoRef.current.requestFullscreen?.() || videoRef.current.webkitRequestFullscreen?.();
     };
 
     const formatTime = (time) => {
@@ -59,7 +74,7 @@ export default function VideoPlayer({ videoUrl, onProgress }) {
             onTouchStart={handleInteraction}
             style={{
                 position: 'relative',
-                backgroundColor: '#343026',
+                backgroundColor: 'var(--color-dark)',
                 borderRadius: '16px',
                 overflow: 'hidden',
                 aspectRatio: '9/16',
@@ -86,7 +101,6 @@ export default function VideoPlayer({ videoUrl, onProgress }) {
                 bottom: 0,
                 left: 0,
                 right: 0,
-                paddingTop: '80px',
                 padding: '80px 24px 24px',
                 background: 'linear-gradient(to top, rgba(30, 27, 19, 0.8) 0%, rgba(30, 27, 19, 0) 100%)',
                 opacity: showControls ? 1 : 0,
@@ -96,6 +110,12 @@ export default function VideoPlayer({ videoUrl, onProgress }) {
                 {/* Seek Bar */}
                 <div
                     onClick={handleSeek}
+                    role="slider"
+                    aria-label="Video progress"
+                    aria-valuenow={Math.round(progress)}
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                    tabIndex={0}
                     style={{
                         width: '100%',
                         height: '4px',
@@ -113,7 +133,7 @@ export default function VideoPlayer({ videoUrl, onProgress }) {
                         left: 0,
                         height: '100%',
                         width: `${progress}%`,
-                        backgroundColor: '#fed65b',
+                        backgroundColor: 'var(--color-gold-light)',
                         borderRadius: '9999px'
                     }} />
                 </div>
@@ -124,18 +144,17 @@ export default function VideoPlayer({ videoUrl, onProgress }) {
                             {formatTime(videoRef.current?.currentTime || 0)} / {formatTime(duration)}
                         </span>
                         <button
-                            onClick={(e) => { e.stopPropagation(); }}
-                            style={{ color: 'rgba(255,255,255,0.9)', cursor: 'pointer', fontSize: '20px' }}
+                            onClick={toggleMute}
+                            aria-label={muted ? 'Unmute' : 'Mute'}
+                            style={{ color: 'rgba(255,255,255,0.9)', cursor: 'pointer', fontSize: '20px', background: 'none', border: 'none' }}
                         >
-                            🔊
+                            {muted ? '🔇' : '🔊'}
                         </button>
                     </div>
                     <button
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            videoRef.current.requestFullscreen?.() || videoRef.current.webkitRequestFullscreen?.();
-                        }}
-                        style={{ color: 'rgba(255,255,255,0.9)', cursor: 'pointer', fontSize: '20px' }}
+                        onClick={toggleFullscreen}
+                        aria-label="Toggle fullscreen"
+                        style={{ color: 'rgba(255,255,255,0.9)', cursor: 'pointer', fontSize: '20px', background: 'none', border: 'none' }}
                     >
                         ⛶
                     </button>
@@ -144,8 +163,9 @@ export default function VideoPlayer({ videoUrl, onProgress }) {
 
             {/* Center Play Button */}
             {!playing && (
-                <div
+                <button
                     onClick={togglePlay}
+                    aria-label="Play video"
                     style={{
                         position: 'absolute',
                         top: '50%',
@@ -160,11 +180,15 @@ export default function VideoPlayer({ videoUrl, onProgress }) {
                         justifyContent: 'center',
                         cursor: 'pointer',
                         boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
-                        transition: 'transform 0.2s ease'
+                        transition: 'transform 0.2s ease',
+                        border: 'none',
+                        color: 'white',
+                        fontSize: '32px',
+                        paddingLeft: '4px'
                     }}
                 >
-                    <span style={{ color: 'white', fontSize: '32px', marginLeft: '4px' }}>▶</span>
-                </div>
+                    ▶
+                </button>
             )}
         </div>
     );
