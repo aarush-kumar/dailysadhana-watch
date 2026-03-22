@@ -7,15 +7,15 @@ export default function Home() {
 
             {/* Desktop Top Nav */}
             <nav className="home-desktop-nav">
-                <div style={{
-                    fontFamily: 'var(--font-heading)',
-                    fontSize: '1.5rem',
-                    fontWeight: '700',
-                    color: 'var(--color-gold)',
-                    letterSpacing: '-0.02em'
-                }}>
-                    Daily Sādhanā
-                </div>
+                <Link href="/">
+                    <Image
+                        src="/logo-gold.png"
+                        alt="Daily Sādhanā"
+                        width={140}
+                        height={42}
+                        style={{ height: 'auto' }}
+                    />
+                </Link>
                 <div style={{ display: 'flex', gap: '40px', alignItems: 'center' }}>
                     <Link href="/" style={{
                         fontFamily: 'var(--font-heading)',

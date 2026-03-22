@@ -193,10 +193,10 @@ function LoginContent() {
             <header style={{ marginBottom: '40px', textAlign: 'center', zIndex: 1 }}>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
                     <Image
-                        src="/logo-dark.png"
-                        alt="Daily Sadhana"
-                        width={160}
-                        height={100}
+                        src="/logo-white.png"
+                        alt="Daily Sādhanā"
+                        width={180}
+                        height={60}
                         style={{ maxWidth: '100%', height: 'auto' }}
                         priority
                     />

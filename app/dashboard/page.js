@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import ProgressGrid from '../../components/ProgressGrid';
 
 export default function Dashboard() {
@@ -52,15 +53,14 @@ export default function Dashboard() {
 
             {/* Desktop Top Nav */}
             <nav className="desktop-nav">
-                <Link href="/dashboard" style={{
-                    fontFamily: 'var(--font-heading)',
-                    fontSize: '1.5rem',
-                    fontWeight: '700',
-                    color: 'var(--color-gold)',
-                    letterSpacing: '-0.02em',
-                    textDecoration: 'none'
-                }}>
-                    Daily Sādhanā
+                <Link href="/dashboard" style={{ textDecoration: 'none' }}>
+                    <Image
+                        src="/logo-gold.png"
+                        alt="Daily Sādhanā"
+                        width={140}
+                        height={42}
+                        style={{ height: 'auto' }}
+                    />
                 </Link>
                 <div style={{ display: 'flex', gap: '40px', alignItems: 'center' }}>
                     <Link href="/dashboard" style={{
