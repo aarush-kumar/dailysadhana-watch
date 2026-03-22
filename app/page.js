@@ -1,8 +1,10 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
-import { Home, BarChart3, User } from 'lucide-react';
+import { Home as HomeIcon, BarChart3, User } from 'lucide-react';
 
-export default function Home() {
+export default function HomePage() {
     return (
         <div style={{ minHeight: '100vh', backgroundColor: 'var(--surface)', paddingBottom: '120px' }}>
 
@@ -418,7 +420,7 @@ export default function Home() {
                     borderRadius: '50%', width: '56px', height: '56px',
                     boxShadow: '0 4px 16px rgba(93, 31, 31, 0.25)',
                     textDecoration: 'none', fontSize: '22px'
-                }}><Home size={22} strokeWidth={1.5} /></Link>
+                }}><HomeIcon size={22} strokeWidth={1.5} /></Link>
                 <Link href="/dashboard" aria-label="Progress" style={{
                     display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
                     color: 'rgba(30, 27, 19, 0.4)', width: '48px', height: '48px',
