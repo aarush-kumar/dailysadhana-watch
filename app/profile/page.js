@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Home, BarChart3, User, ShoppingBag, LogOut, History } from 'lucide-react';
 
 export default function Profile() {
     const [session, setSession] = useState(null);
@@ -85,7 +86,7 @@ export default function Profile() {
                     fontSize: '16px',
                     border: '2px solid rgba(254, 214, 91, 0.3)'
                 }}>
-                    👤
+                    <User size={18} strokeWidth={1.5} />
                 </Link>
             </nav>
 
@@ -113,11 +114,11 @@ export default function Profile() {
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            fontSize: '36px',
                             boxShadow: '0 4px 16px rgba(30, 27, 19, 0.08)',
-                            overflow: 'hidden'
+                            overflow: 'hidden',
+                            color: 'var(--color-muted)'
                         }}>
-                            👤
+                            <User size={36} strokeWidth={1.2} />
                         </div>
                     </div>
 
@@ -202,9 +203,9 @@ export default function Profile() {
                                         alignItems: 'center',
                                         justifyContent: 'center',
                                         boxShadow: '0 2px 8px rgba(30, 27, 19, 0.04)',
-                                        fontSize: '20px'
+                                        color: 'var(--color-gold)'
                                     }}>
-                                        🛍️
+                                        <ShoppingBag size={20} strokeWidth={1.5} />
                                     </div>
                                     <div style={{ textAlign: 'left' }}>
                                         <span style={{
@@ -261,7 +262,7 @@ export default function Profile() {
                                     transition: 'background-color 0.2s ease'
                                 }}>
                                     <span style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                                        <span style={{ fontSize: '18px' }}>📊</span>
+                                        <History size={18} strokeWidth={1.5} color="var(--color-maroon)" />
                                         <span style={{ fontFamily: 'var(--font-body)', fontWeight: '500' }}>Sādhanā History</span>
                                     </span>
                                     <span style={{ color: 'var(--color-muted)', fontSize: '16px' }}>›</span>
@@ -293,7 +294,7 @@ export default function Profile() {
                                 transition: 'all 0.3s ease'
                             }}
                         >
-                            🚪 Sign Out
+                            <LogOut size={16} strokeWidth={2} /> Sign Out
                         </button>
 
                         <p style={{
@@ -313,20 +314,20 @@ export default function Profile() {
                 <Link href="/" aria-label="Home" style={{
                     display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
                     color: 'rgba(30, 27, 19, 0.4)', width: '48px', height: '48px',
-                    textDecoration: 'none', fontSize: '22px'
-                }}>🏠</Link>
+                    textDecoration: 'none'
+                }}><Home size={22} strokeWidth={1.5} /></Link>
                 <Link href="/dashboard" aria-label="Progress" style={{
                     display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
                     color: 'rgba(30, 27, 19, 0.4)', width: '48px', height: '48px',
-                    textDecoration: 'none', fontSize: '22px'
-                }}>📊</Link>
+                    textDecoration: 'none'
+                }}><BarChart3 size={22} strokeWidth={1.5} /></Link>
                 <Link href="/profile" aria-label="Profile" style={{
                     display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
                     backgroundColor: 'var(--color-maroon)', color: 'white',
                     borderRadius: '50%', width: '56px', height: '56px',
                     boxShadow: '0 4px 16px rgba(93, 31, 31, 0.25)',
-                    textDecoration: 'none', fontSize: '22px'
-                }}>👤</Link>
+                    textDecoration: 'none'
+                }}><User size={22} strokeWidth={1.5} /></Link>
             </nav>
 
             <style jsx>{`

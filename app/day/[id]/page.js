@@ -4,6 +4,7 @@ import { useState, useEffect, use } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Home, BarChart3, User, LayoutGrid } from 'lucide-react';
 import VideoPlayer from '../../../components/VideoPlayer';
 import LanguageSelector from '../../../components/LanguageSelector';
 import ShlokaText from '../../../components/ShlokaText';
@@ -122,7 +123,7 @@ export default function DayPage({ params: paramsPromise }) {
                     fontSize: '16px',
                     border: '1px solid rgba(217, 193, 191, 0.15)'
                 }}>
-                    👤
+                    <User size={18} strokeWidth={1.5} />
                 </Link>
             </nav>
 
@@ -178,7 +179,7 @@ export default function DayPage({ params: paramsPromise }) {
                                 borderRadius: '9999px',
                                 textDecoration: 'none'
                             }}>
-                                <span style={{ fontSize: '12px' }}>📊</span>
+                                <LayoutGrid size={14} strokeWidth={1.5} color="var(--color-dark)" />
                                 <span style={{
                                     fontFamily: 'var(--font-label)',
                                     fontSize: '11px',
@@ -264,7 +265,7 @@ export default function DayPage({ params: paramsPromise }) {
                                 fontWeight: '600',
                                 textDecoration: 'none'
                             }}>
-                                <span>📊</span>
+                                <BarChart3 size={16} strokeWidth={1.5} />
                                 VIEW FULL PATHWAY
                             </Link>
                         </div>
@@ -290,17 +291,17 @@ export default function DayPage({ params: paramsPromise }) {
                     display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
                     color: 'rgba(30, 27, 19, 0.4)', width: '48px', height: '48px',
                     textDecoration: 'none', fontSize: '22px'
-                }}>🏠</Link>
+                }}><Home size={22} strokeWidth={1.5} /></Link>
                 <Link href="/dashboard" aria-label="Progress" style={{
                     display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
                     color: 'rgba(30, 27, 19, 0.4)', width: '48px', height: '48px',
-                    textDecoration: 'none', fontSize: '22px'
-                }}>📊</Link>
+                    textDecoration: 'none'
+                }}><BarChart3 size={22} strokeWidth={1.5} /></Link>
                 <Link href="/profile" aria-label="Profile" style={{
                     display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
                     color: 'rgba(30, 27, 19, 0.4)', width: '48px', height: '48px',
-                    textDecoration: 'none', fontSize: '22px'
-                }}>👤</Link>
+                    textDecoration: 'none'
+                }}><User size={22} strokeWidth={1.5} /></Link>
             </nav>
 
             <style jsx>{`

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Home, BarChart3, User, Flame, Clock } from 'lucide-react';
 import ProgressGrid from '../../components/ProgressGrid';
 
 export default function Dashboard() {
@@ -91,7 +92,7 @@ export default function Dashboard() {
                         fontSize: '16px',
                         border: '1px solid rgba(217, 193, 191, 0.15)'
                     }}>
-                        👤
+                        <User size={18} strokeWidth={1.5} />
                     </Link>
                 </div>
             </nav>
@@ -141,7 +142,7 @@ export default function Dashboard() {
                             justifyContent: 'center',
                             flexShrink: 0
                         }} className="stat-icon">
-                            <span style={{ fontSize: '22px' }}>🔥</span>
+                            <Flame size={22} color="var(--color-gold)" strokeWidth={1.5} />
                         </div>
                         <div className="stat-text">
                             <p style={{
@@ -175,7 +176,7 @@ export default function Dashboard() {
                             justifyContent: 'center',
                             flexShrink: 0
                         }} className="stat-icon">
-                            <span style={{ fontSize: '20px' }}>🕐</span>
+                            <Clock size={20} color="var(--color-maroon)" strokeWidth={1.5} />
                         </div>
                         <div className="stat-text">
                             <p style={{
@@ -316,9 +317,8 @@ export default function Dashboard() {
                     width: '48px',
                     height: '48px',
                     textDecoration: 'none',
-                    fontSize: '22px'
                 }}>
-                    🏠
+                    <Home size={22} strokeWidth={1.5} />
                 </Link>
                 <Link href="/dashboard" aria-label="Progress" style={{
                     display: 'flex',
@@ -330,10 +330,9 @@ export default function Dashboard() {
                     width: '56px',
                     height: '56px',
                     boxShadow: '0 4px 16px rgba(93, 31, 31, 0.25)',
-                    textDecoration: 'none',
-                    fontSize: '22px'
+                    textDecoration: 'none'
                 }}>
-                    📊
+                    <BarChart3 size={22} strokeWidth={1.5} />
                 </Link>
                 <Link href="/profile" aria-label="Profile" style={{
                     display: 'flex',
@@ -342,10 +341,9 @@ export default function Dashboard() {
                     color: 'rgba(30, 27, 19, 0.4)',
                     width: '48px',
                     height: '48px',
-                    textDecoration: 'none',
-                    fontSize: '22px'
+                    textDecoration: 'none'
                 }}>
-                    👤
+                    <User size={22} strokeWidth={1.5} />
                 </Link>
             </nav>
 
