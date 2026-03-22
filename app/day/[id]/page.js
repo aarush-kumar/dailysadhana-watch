@@ -132,6 +132,17 @@ export default function DayPage({ params: paramsPromise }) {
 
                     {/* Left Column: Video */}
                     <div className="day-video-col">
+                        {/* Mobile Logo */}
+                        <div className="day-mobile-logo">
+                            <Image
+                                src="/logo-gold.png"
+                                alt="Daily Sādhanā"
+                                width={100}
+                                height={30}
+                                style={{ height: 'auto', opacity: 0.7 }}
+                            />
+                        </div>
+
                         {/* Mobile Header */}
                         <header className="day-header-mobile">
                             <div>
@@ -324,6 +335,9 @@ export default function DayPage({ params: paramsPromise }) {
                 .day-content-col {
                     width: 100%;
                 }
+                .day-mobile-logo {
+                    margin-bottom: 12px;
+                }
                 .day-header-mobile {
                     display: flex;
                     justify-content: space-between;
@@ -377,6 +391,9 @@ export default function DayPage({ params: paramsPromise }) {
                         grid-template-columns: 5fr 7fr;
                         gap: 64px;
                         align-items: start;
+                    }
+                    .day-mobile-logo {
+                        display: none !important;
                     }
                     .day-header-mobile {
                         display: none !important;

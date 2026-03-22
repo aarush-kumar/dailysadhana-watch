@@ -8,13 +8,18 @@ import { Home, BarChart3, User, ShoppingBag, LogOut, History } from 'lucide-reac
 export default function Profile() {
     const [session, setSession] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [customerName, setCustomerName] = useState(null);
+    const [phone, setPhone] = useState(null);
 
     useEffect(() => {
         async function checkAuth() {
             try {
                 const res = await fetch('/api/progress');
                 if (res.ok) {
-                    setSession({ phone: 'Verified User', verified: true });
+                    const data = await res.json();
+                    setSession({ verified: true });
+                    setCustomerName(data.customerName);
+                    setPhone(data.phone);
                 }
             } catch (err) {
                 console.error(err);
@@ -141,7 +146,7 @@ export default function Profile() {
                             color: 'var(--color-dark)',
                             marginBottom: '8px'
                         }}>
-                            Journal Seeker
+                            {customerName || 'Journal Seeker'}
                         </h1>
 
                         {/* Phone + Verified Badge */}
@@ -154,7 +159,7 @@ export default function Profile() {
                             flexWrap: 'wrap',
                             justifyContent: 'center'
                         }}>
-                            <span style={{ fontFamily: 'var(--font-body)' }}>Phone OTP Login</span>
+                            <span style={{ fontFamily: 'var(--font-body)' }}>{phone || 'Phone OTP Login'}</span>
                             <span style={{
                                 display: 'inline-flex',
                                 alignItems: 'center',

@@ -77,18 +77,6 @@ export default function HomePage() {
                         ✦ The Modern Temple
                     </div>
 
-                    {/* Logo */}
-                    <div style={{ marginBottom: '24px' }}>
-                        <Image
-                            src="/logo-gold.png"
-                            alt="Daily Sādhanā"
-                            width={200}
-                            height={60}
-                            style={{ maxWidth: '100%', height: 'auto' }}
-                            priority
-                        />
-                    </div>
-
                     <h1 className="home-hero-title" style={{
                         fontFamily: 'var(--font-heading)',
                         color: 'var(--color-maroon)',

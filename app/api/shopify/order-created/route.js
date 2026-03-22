@@ -39,7 +39,7 @@ export async function POST(req) {
         await db.collection('verified_orders').doc(normalizedPhone).set({
             orderId: payload.id,
             email: payload.customer?.email,
-            name: payload.customer?.first_name,
+            name: [payload.customer?.first_name, payload.customer?.last_name].filter(Boolean).join(' ') || null,
             createdAt: admin.firestore.FieldValue.serverTimestamp()
         });
 

@@ -12,6 +12,19 @@ export async function GET(req) {
         const userDoc = await db.collection('users').doc(session.uid).get();
         const userData = userDoc.data();
 
+        // Look up customer name from verified_orders using phone
+        let customerName = null;
+        if (session.phone) {
+            try {
+                const orderDoc = await db.collection('verified_orders').doc(session.phone).get();
+                if (orderDoc.exists) {
+                    customerName = orderDoc.data()?.name || null;
+                }
+            } catch (e) {
+                // Silently fail — name is optional
+            }
+        }
+
         // progress is stored as subcollection or map
         const progressSnap = await db.collection('users').doc(session.uid).collection('progress').get();
         const completedDays = progressSnap.docs.map(doc => parseInt(doc.id.replace('day_', '')));
@@ -25,7 +38,9 @@ export async function GET(req) {
         return NextResponse.json({
             completedDays,
             streak: completedDays.length > 0 ? 5 : 0, // Placeholder
-            totalMinutes: Math.round(totalMinutes)
+            totalMinutes: Math.round(totalMinutes),
+            customerName,
+            phone: session.phone
         });
     } catch (error) {
         console.error('Error fetching progress:', error);
