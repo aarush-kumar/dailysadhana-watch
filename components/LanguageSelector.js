@@ -1,33 +1,38 @@
 export default function LanguageSelector({ activeLanguage, onSelect }) {
     const languages = [
-        { code: 'en', label: 'English' },
-        { code: 'hi', label: 'Hindi' },
-        { code: 'ta', label: 'Tamil' },
-        { code: 'te', label: 'Telugu' },
-        { code: 'kn', label: 'Kannada' },
+        { code: 'en', label: 'ENGLISH' },
+        { code: 'hi', label: 'HINDI' },
+        { code: 'ta', label: 'TAMIL' },
+        { code: 'te', label: 'TELUGU' },
+        { code: 'kn', label: 'KANNADA' },
     ];
 
     return (
         <div style={{
             display: 'flex',
             flexWrap: 'wrap',
-            gap: '10px',
-            margin: '24px 0',
-            justifyContent: 'center'
+            gap: '8px',
+            margin: '32px 0',
+            overflow: 'auto'
         }}>
             {languages.map((lang) => (
                 <button
                     key={lang.code}
                     onClick={() => onSelect(lang.code)}
                     style={{
-                        padding: '8px 20px',
-                        borderRadius: 'var(--radius-pill)',
-                        fontSize: '14px',
-                        fontWeight: '600',
-                        border: `1px solid ${activeLanguage === lang.code ? 'var(--color-maroon)' : 'rgba(107, 36, 33, 0.2)'}`,
-                        backgroundColor: activeLanguage === lang.code ? 'var(--color-maroon)' : 'transparent',
-                        color: activeLanguage === lang.code ? 'var(--color-light)' : 'var(--color-maroon)',
-                        transition: 'all 0.2s ease'
+                        padding: '10px 20px',
+                        borderRadius: '9999px',
+                        fontSize: '11px',
+                        fontWeight: '700',
+                        fontFamily: 'var(--font-label)',
+                        letterSpacing: '0.1em',
+                        border: 'none',
+                        whiteSpace: 'nowrap',
+                        backgroundColor: activeLanguage === lang.code ? 'var(--color-maroon)' : 'var(--surface-container-low)',
+                        color: activeLanguage === lang.code ? 'white' : 'var(--color-muted)',
+                        boxShadow: activeLanguage === lang.code ? '0 4px 12px rgba(93, 31, 31, 0.2)' : 'none',
+                        transition: 'all 0.3s ease',
+                        cursor: 'pointer'
                     }}
                 >
                     {lang.label}

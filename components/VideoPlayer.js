@@ -1,13 +1,14 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { Play, Pause, Maximize, Volume2 } from 'lucide-react';
 
 export default function VideoPlayer({ videoUrl, onProgress }) {
     const [playing, setPlaying] = useState(false);
     const [progress, setProgress] = useState(0);
     const [duration, setDuration] = useState(0);
+    const [showControls, setShowControls] = useState(true);
     const videoRef = useRef(null);
+    const controlsTimeout = useRef(null);
 
     const togglePlay = () => {
         if (videoRef.current.paused) {
@@ -24,36 +25,48 @@ export default function VideoPlayer({ videoUrl, onProgress }) {
         const total = videoRef.current.duration;
         setProgress((current / total) * 100);
 
-        // Auto-mark as complete at 90%
         if (current / total > 0.9) {
             onProgress(Math.floor(current));
         }
     };
 
     const handleSeek = (e) => {
-        const time = (e.target.value / 100) * videoRef.current.duration;
-        videoRef.current.currentTime = time;
+        const rect = e.currentTarget.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const percent = x / rect.width;
+        videoRef.current.currentTime = percent * videoRef.current.duration;
     };
 
     const formatTime = (time) => {
         const minutes = Math.floor(time / 60);
         const seconds = Math.floor(time % 60);
-        return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+        return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    };
+
+    const handleInteraction = () => {
+        setShowControls(true);
+        clearTimeout(controlsTimeout.current);
+        if (playing) {
+            controlsTimeout.current = setTimeout(() => setShowControls(false), 3000);
+        }
     };
 
     return (
         <div
             className="video-container"
             onContextMenu={(e) => e.preventDefault()}
+            onMouseMove={handleInteraction}
+            onTouchStart={handleInteraction}
             style={{
                 position: 'relative',
-                backgroundColor: '#000',
-                borderRadius: 'var(--radius-card)',
+                backgroundColor: '#343026',
+                borderRadius: '16px',
                 overflow: 'hidden',
                 aspectRatio: '9/16',
-                maxHeight: '60vh',
+                maxHeight: '65vh',
                 margin: '0 auto',
-                boxShadow: '0 4px 20px rgba(0,0,0,0.2)'
+                boxShadow: '0 12px 48px rgba(30, 27, 19, 0.12)',
+                cursor: 'pointer'
             }}
         >
             <video
@@ -63,55 +76,73 @@ export default function VideoPlayer({ videoUrl, onProgress }) {
                 onLoadedMetadata={() => setDuration(videoRef.current.duration)}
                 onClick={togglePlay}
                 controlsList="nodownload nofullscreen noremoteplayback"
+                playsInline
                 style={{ width: '100%', height: '100%', display: 'block', objectFit: 'cover' }}
             />
 
-            {/* Custom Controls Overlay */}
+            {/* Bottom gradient + controls */}
             <div style={{
                 position: 'absolute',
                 bottom: 0,
                 left: 0,
                 right: 0,
-                padding: '20px',
-                background: 'linear-gradient(transparent, rgba(0,0,0,0.7))',
-                opacity: 0.9,
-                transition: 'opacity 0.3s ease'
+                paddingTop: '80px',
+                padding: '80px 24px 24px',
+                background: 'linear-gradient(to top, rgba(30, 27, 19, 0.8) 0%, rgba(30, 27, 19, 0) 100%)',
+                opacity: showControls ? 1 : 0,
+                transition: 'opacity 0.3s ease',
+                pointerEvents: showControls ? 'auto' : 'none'
             }}>
                 {/* Seek Bar */}
-                <input
-                    type="range"
-                    min="0"
-                    max="100"
-                    value={progress}
-                    onChange={handleSeek}
+                <div
+                    onClick={handleSeek}
                     style={{
                         width: '100%',
-                        marginBottom: '10px',
-                        accentColor: 'var(--color-maroon)',
-                        cursor: 'pointer'
+                        height: '4px',
+                        backgroundColor: 'rgba(255,255,255,0.3)',
+                        borderRadius: '9999px',
+                        marginBottom: '16px',
+                        cursor: 'pointer',
+                        position: 'relative',
+                        overflow: 'hidden'
                     }}
-                />
+                >
+                    <div style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        height: '100%',
+                        width: `${progress}%`,
+                        backgroundColor: '#fed65b',
+                        borderRadius: '9999px'
+                    }} />
+                </div>
 
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', color: '#fff' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-                        <button onClick={togglePlay} style={{ color: '#fff' }}>
-                            {playing ? <Pause size={24} fill="#fff" /> : <Play size={24} fill="#fff" />}
-                        </button>
-                        <span style={{ fontSize: '14px', fontFamily: 'var(--font-body)' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: 'rgba(255,255,255,0.9)' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                        <span style={{ fontSize: '12px', fontWeight: '500', fontFamily: 'monospace', letterSpacing: '-0.03em' }}>
                             {formatTime(videoRef.current?.currentTime || 0)} / {formatTime(duration)}
                         </span>
-                    </div>
-
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-                        <Volume2 size={20} />
-                        <button onClick={() => videoRef.current.requestFullscreen()} style={{ color: '#fff' }}>
-                            <Maximize size={20} />
+                        <button
+                            onClick={(e) => { e.stopPropagation(); }}
+                            style={{ color: 'rgba(255,255,255,0.9)', cursor: 'pointer', fontSize: '20px' }}
+                        >
+                            🔊
                         </button>
                     </div>
+                    <button
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            videoRef.current.requestFullscreen?.() || videoRef.current.webkitRequestFullscreen?.();
+                        }}
+                        style={{ color: 'rgba(255,255,255,0.9)', cursor: 'pointer', fontSize: '20px' }}
+                    >
+                        ⛶
+                    </button>
                 </div>
             </div>
 
-            {/* Center Play Button Overlay */}
+            {/* Center Play Button */}
             {!playing && (
                 <div
                     onClick={togglePlay}
@@ -122,15 +153,17 @@ export default function VideoPlayer({ videoUrl, onProgress }) {
                         transform: 'translate(-50%, -50%)',
                         width: '80px',
                         height: '80px',
-                        backgroundColor: 'rgba(107, 36, 33, 0.8)',
+                        backgroundColor: 'var(--color-maroon)',
                         borderRadius: '50%',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        cursor: 'pointer'
+                        cursor: 'pointer',
+                        boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
+                        transition: 'transform 0.2s ease'
                     }}
                 >
-                    <Play size={40} fill="#fff" color="#fff" style={{ marginLeft: '4px' }} />
+                    <span style={{ color: 'white', fontSize: '32px', marginLeft: '4px' }}>▶</span>
                 </div>
             )}
         </div>
