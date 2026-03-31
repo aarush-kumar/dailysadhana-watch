@@ -54,7 +54,7 @@ export async function POST(req) {
                 const res = await fetch('https://api.interakt.ai/v1/public/message/', {
                     method: 'POST',
                     headers: {
-                        'Authorization': `Basic ${Buffer.from(INTERAKT_API_KEY).toString('base64')}`,
+                        'Authorization': `Basic ${INTERAKT_API_KEY}`,
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify(payload),
