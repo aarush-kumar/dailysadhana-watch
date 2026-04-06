@@ -237,13 +237,14 @@ export default function AdminPage() {
                             <th style={styles.th}>Last Watched</th>
                             <th style={styles.th}>Last Login</th>
                             <th style={styles.th}>Purchased</th>
+                            <th style={styles.th}>Source</th>
                             <th style={styles.th}>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {users.length === 0 && (
                             <tr>
-                                <td colSpan={7} style={{ textAlign: 'center', padding: '48px', color: '#6b7280' }}>
+                                <td colSpan={8} style={{ textAlign: 'center', padding: '48px', color: '#6b7280' }}>
                                     {loading ? 'Loading...' : 'No trial watchers found.'}
                                 </td>
                             </tr>
@@ -285,6 +286,23 @@ export default function AdminPage() {
                                     }}>
                                         {user.purchased ? 'Yes' : 'No'}
                                     </span>
+                                </td>
+                                <td style={styles.td}>
+                                    {user.purchased ? (
+                                        <span style={{
+                                            display: 'inline-block',
+                                            padding: '2px 10px',
+                                            borderRadius: '9999px',
+                                            fontSize: '12px',
+                                            fontWeight: '600',
+                                            backgroundColor: user.source === 'trial_first' ? '#eff6ff' : '#faf5ff',
+                                            color: user.source === 'trial_first' ? '#1d4ed8' : '#7c3aed',
+                                        }}>
+                                            {user.source === 'trial_first' ? 'Free trial → Bought' : 'Bought → Scanned'}
+                                        </span>
+                                    ) : (
+                                        <span style={{ color: '#9ca3af', fontSize: '12px' }}>—</span>
+                                    )}
                                 </td>
                                 <td style={styles.td}>
                                     <button

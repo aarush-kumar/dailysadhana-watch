@@ -32,30 +32,49 @@ export async function GET(req) {
 
             const daysWatched = progressSnap.docs.map(d => parseInt(d.id.replace('day_', '')));
             const lastWatchedAt = progressSnap.docs[0].data().watchedAt?.toDate?.() || null;
+            // First watched = last doc since ordered desc
+            const firstWatchedAt = progressSnap.docs[progressSnap.docs.length - 1].data().watchedAt?.toDate?.() || null;
 
             results.push({
                 uid: userDoc.id,
                 phone: userData.phone,
                 daysWatched,
                 lastWatchedAt: lastWatchedAt ? lastWatchedAt.toISOString() : null,
+                firstWatchedAt: firstWatchedAt ? firstWatchedAt.toISOString() : null,
                 lastLoginAt: userData.lastLoginAt?.toDate?.()?.toISOString() || null,
             });
         }));
 
-        // Check which phones have a matching verified_order (purchased)
+        // Check which phones have a matching verified_order (purchased) and when
         const phones = results.map(r => r.phone).filter(Boolean);
-        const purchasedPhones = new Set();
+        const ordersByPhone = {};
         // Firestore 'in' queries support max 30 items per batch
         for (let i = 0; i < phones.length; i += 30) {
             const batch = phones.slice(i, i + 30);
             const ordersSnap = await db.collection('verified_orders')
                 .where('__name__', 'in', batch)
                 .get();
-            ordersSnap.docs.forEach(doc => purchasedPhones.add(doc.id));
+            ordersSnap.docs.forEach(doc => {
+                const data = doc.data();
+                ordersByPhone[doc.id] = data.createdAt?.toDate?.() || null;
+            });
         }
 
         for (const user of results) {
-            user.purchased = purchasedPhones.has(user.phone);
+            const orderDate = ordersByPhone[user.phone];
+            user.purchased = !!orderDate;
+            if (orderDate) {
+                user.purchasedAt = orderDate.toISOString();
+                // Get earliest watch time to compare
+                const firstWatchedAt = user.firstWatchedAt ? new Date(user.firstWatchedAt) : null;
+                if (firstWatchedAt && orderDate < firstWatchedAt) {
+                    user.source = 'journal_first'; // Bought journal, then scanned QR
+                } else {
+                    user.source = 'trial_first'; // Watched free videos, then purchased
+                }
+            } else {
+                user.source = null;
+            }
         }
 
         // Sort by most recently active first
