@@ -42,6 +42,22 @@ export async function GET(req) {
             });
         }));
 
+        // Check which phones have a matching verified_order (purchased)
+        const phones = results.map(r => r.phone).filter(Boolean);
+        const purchasedPhones = new Set();
+        // Firestore 'in' queries support max 30 items per batch
+        for (let i = 0; i < phones.length; i += 30) {
+            const batch = phones.slice(i, i + 30);
+            const ordersSnap = await db.collection('verified_orders')
+                .where('__name__', 'in', batch)
+                .get();
+            ordersSnap.docs.forEach(doc => purchasedPhones.add(doc.id));
+        }
+
+        for (const user of results) {
+            user.purchased = purchasedPhones.has(user.phone);
+        }
+
         // Sort by most recently active first
         results.sort((a, b) => {
             if (!a.lastWatchedAt) return 1;

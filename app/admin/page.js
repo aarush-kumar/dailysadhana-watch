@@ -236,13 +236,14 @@ export default function AdminPage() {
                             <th style={styles.th}>Days Watched</th>
                             <th style={styles.th}>Last Watched</th>
                             <th style={styles.th}>Last Login</th>
+                            <th style={styles.th}>Purchased</th>
                             <th style={styles.th}>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {users.length === 0 && (
                             <tr>
-                                <td colSpan={6} style={{ textAlign: 'center', padding: '48px', color: '#6b7280' }}>
+                                <td colSpan={7} style={{ textAlign: 'center', padding: '48px', color: '#6b7280' }}>
                                     {loading ? 'Loading...' : 'No trial watchers found.'}
                                 </td>
                             </tr>
@@ -271,6 +272,19 @@ export default function AdminPage() {
                                 </td>
                                 <td style={{ ...styles.td, color: '#6b7280', fontSize: '13px' }}>
                                     {formatDate(user.lastLoginAt)}
+                                </td>
+                                <td style={styles.td}>
+                                    <span style={{
+                                        display: 'inline-block',
+                                        padding: '2px 10px',
+                                        borderRadius: '9999px',
+                                        fontSize: '12px',
+                                        fontWeight: '600',
+                                        backgroundColor: user.purchased ? '#dcfce7' : '#fef2f2',
+                                        color: user.purchased ? '#16a34a' : '#dc2626',
+                                    }}>
+                                        {user.purchased ? 'Yes' : 'No'}
+                                    </span>
                                 </td>
                                 <td style={styles.td}>
                                     <button
