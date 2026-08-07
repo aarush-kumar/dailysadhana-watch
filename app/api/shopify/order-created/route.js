@@ -44,7 +44,7 @@ export async function POST(req) {
 
         // 3a. Phone-based record (India store / phone login)
         if (phone) {
-            const normalizedPhone = phone.replace(/\s+/g, '');
+            const normalizedPhone = phone.replace(/[\s\-\(\)]/g, '');
             writes.push(
                 db.collection('verified_orders').doc(normalizedPhone).set({
                     orderId: payload.id,
@@ -61,7 +61,7 @@ export async function POST(req) {
             writes.push(
                 db.collection('verified_orders').doc(normalizedEmail).set({
                     orderId: payload.id,
-                    phone: phone ? phone.replace(/\s+/g, '') : null,
+                    phone: phone ? phone.replace(/[\s\-\(\)]/g, '') : null,
                     name,
                     createdAt: admin.firestore.FieldValue.serverTimestamp()
                 }).then(() => console.log('Verified order added for email:', normalizedEmail))

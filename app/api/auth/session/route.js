@@ -35,13 +35,22 @@ export async function POST(req) {
         }
 
         // 2. Look up phone in verified_orders
-        const normalizedPhone = phone.replace(/\s+/g, '');
+        const normalizedPhone = phone.replace(/[\s\-\(\)]/g, '');
         let isVerified = false;
 
         try {
             if (db) {
-                const orderDoc = await db.collection('verified_orders').doc(normalizedPhone).get();
-                isVerified = orderDoc.exists;
+                const phoneVariants = new Set([
+                    normalizedPhone,
+                    normalizedPhone.replace(/^\+91/, ''),
+                    normalizedPhone.replace(/^\+/, ''),
+                    '+91' + normalizedPhone.replace(/^\+?91?/, ''),
+                ]);
+
+                for (const variant of phoneVariants) {
+                    const doc = await db.collection('verified_orders').doc(variant).get();
+                    if (doc.exists) { isVerified = true; break; }
+                }
 
                 // 3. Update or create user profile
                 await db.collection('users').doc(uid).set({
